@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using static Elements;
 
 public class Fruit : MonoBehaviour
 {	
@@ -14,11 +18,50 @@ public class Fruit : MonoBehaviour
 	[SerializeField] Rigidbody2D rigidFruit;
 	[SerializeField] float dropSpeed;
 	
+	//Fruit nutrient
+	Nutrient FruitNutrient = new Nutrient();
+	
+	Invoice FruitInvoice = new Invoice();
+	
+	[TableList]
+	public List<fruitContent> NutritionalYield = new List<fruitContent>();
+	
+	[TableList]
+	public List<fruitContent> RequiredIngredients = new List<fruitContent>();
+	
+	[Serializable]
+	public class fruitContent {
+		[TableColumnWidth(10)]
+		public Element element;
+		public float Amount;
+	}
+	
+	[MinMaxSlider(0.01f, 1f, true)]
+	public Vector2 BaseAndMaxPurity = new Vector2(0.5f, 0.9f);
+	float baseP;
+	float maxP;
+	
+	[SerializeField]
+	float PortionPerTick;
+	
+	[SerializeField]
+	float ChancePerTick;
+	
 	
 	// Start is called before the first frame update
     void Start()
 	{
+		foreach (fruitContent f in NutritionalYield) {
+			FruitNutrient.setCap(f.element, f.Amount);
+			FruitNutrient.setVal(f.element, f.Amount);
+		}
 		
+		foreach (fruitContent f in RequiredIngredients) {
+			FruitInvoice.setVal(f.element, f.Amount);
+		}
+		
+		baseP = BaseAndMaxPurity[0];
+		maxP = BaseAndMaxPurity[1];
     }
 
     // Update is called once per frame
@@ -68,6 +111,22 @@ public class Fruit : MonoBehaviour
 	
 	public float getMaxPurity() {
 		return maxPurity;
+	}
+	
+	public Nutrient getNutrient() {
+		return FruitNutrient;
+	}
+	
+	public Invoice getInvoice() {
+		return FruitInvoice;
+	}
+	
+	public float getRate() {
+		return PortionPerTick;
+	}
+	
+	public float getRNG() {
+		return ChancePerTick;
 	}
 	
 }

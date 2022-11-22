@@ -122,6 +122,11 @@ public class Plant : SerializedMonoBehaviour
 			currVit += 1;
 		}
 		
+		//Cultivate cost
+		//Ask for invoice
+		//Withdraw from internal nutrient
+		//Return invoice
+		
 		//Refine cost
 		
 		
@@ -156,7 +161,9 @@ public class Plant : SerializedMonoBehaviour
 	
 	private Invoice calcCultivate(Nutrient newSoilN) {
 		CultivateInvoice = new Invoice();
-		
+		if (hasFruitNode) {
+			
+		}
 		return CultivateInvoice;
 	}
 	

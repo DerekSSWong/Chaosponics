@@ -37,6 +37,15 @@ public class Invoice : IEnumerable<Element>
 		}
 	}
 	
+	public void minus(Invoice inv) {
+		foreach (Element e in inv) {
+			data[e] -= inv.getVal(e);
+			if (data[e] == 0) {
+				data[e] = 0;
+			}
+		}
+	}
+	
 	public IEnumerator<Element> GetEnumerator() {
 		foreach(Element e in Element.GetValues(typeof(Element))) {
 			yield return e;

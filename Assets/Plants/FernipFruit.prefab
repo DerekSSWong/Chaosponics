@@ -107,6 +107,19 @@ MonoBehaviour:
   maxPurity: 60
   rigidFruit: {fileID: -101226233994053583}
   dropSpeed: 40
+  NutritionalYield:
+  - element: 0
+    Amount: 50
+  - element: 2
+    Amount: 50
+  RequiredIngredients:
+  - element: 0
+    Amount: 30
+  - element: 2
+    Amount: 5
+  - element: 1
+    Amount: 5
+  BaseAndMaxPurity: {x: 0.37884867, y: 0.6542044}
 --- !u!114 &3282095885953504817
 MonoBehaviour:
   m_ObjectHideFlags: 0
