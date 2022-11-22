@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Plant
+  - Fruit
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Background
+  - Water
+  - UI
+  - 
+  - BackPlant
+  - MidPlant
+  - FrontPlant
+  - Fruit
+  - Floor
+  - IO
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4155586617
+    locked: 0
+  - name: BotPlant
+    uniqueID: 288768261
+    locked: 0
+  - name: MidPlant
+    uniqueID: 1351340855
+    locked: 0
+  - name: TopPlant
+    uniqueID: 3881400477
+    locked: 0
+  - name: Fruit
+    uniqueID: 2681382081
+    locked: 0
+  - name: Floor
+    uniqueID: 2642301881
+    locked: 0
+  - name: Cover
+    uniqueID: 1617550227
+    locked: 0
+  - name: UI
+    uniqueID: 2539442429
+    locked: 0
