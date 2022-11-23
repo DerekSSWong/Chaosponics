@@ -123,6 +123,15 @@ public class Plant : SerializedMonoBehaviour
 		}
 		
 		//Cultivate cost
+		if (hasFruitNode) {
+			if (FruitNode.roll()) {
+				Invoice fruitInvoice = FruitNode.getDemand();
+				CultivateInvoice = internalNutrient.withdraw(fruitInvoice);
+				FruitNode.supply(CultivateInvoice);
+				SigmaInvoice.add(CultivateInvoice);
+			}
+			
+		}
 		//Ask for invoice
 		//Withdraw from internal nutrient
 		//Return invoice

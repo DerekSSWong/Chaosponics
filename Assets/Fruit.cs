@@ -129,4 +129,7 @@ public class Fruit : MonoBehaviour
 		return ChancePerTick;
 	}
 	
+	public void spawn(Transform rootnode) {
+		Instantiate(gameObject, rootnode.position, Quaternion.identity);
+	}
 }

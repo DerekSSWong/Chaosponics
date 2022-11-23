@@ -35,17 +35,40 @@ public class FruitNode : MonoBehaviour
 	public void supply(float chaosGiven) {
 		currChaos += chaosGiven;
 		if (currChaos >= fruit.getChaos()) {
-			Instantiate(fruitObj, spawnNode.transform.position, Quaternion.identity);
+			//Instantiate(fruitObj, spawnNode.transform.position, Quaternion.identity);
 			currChaos = 0;
 		}
 	}
 	
 	public void supply (Invoice inv) {
-		
+		if (inv.getVal(Chaos) < FruitInvoice.getVal(Chaos) * fruit.getRate()) {
+			currPurity *= 0.9f;
+		}
+		SigmaInvoice.add(inv);
+		if (SigmaInvoice.getVal(Chaos) >= FruitInvoice.getVal(Chaos)) {
+			spawnFruit();
+		}
+	}
+	
+	public void spawnFruit() {
+		foreach (Element e in FruitInvoice) {
+			if (e == Chaos) {
+				continue;
+			} else if (SigmaInvoice.getVal(e) >= FruitInvoice.getVal(e)) {
+				currPurity *= 1.1f;
+			}
+		}
+		if (currPurity > fruit.getMaxPurity()) {
+			currPurity = fruit.getMaxPurity();
+		}
+		fruit.setPurity(currPurity);
+		fruit.spawn(this.transform);
+		SigmaInvoice = new Invoice();
+		currPurity = fruit.getBasePurity();
 	}
 	
 	public float getProgress() {
-		return currChaos/fruit.getChaos();
+		return SigmaInvoice.getVal(Chaos);
 	}
 	
 	public Invoice getDemand() {
