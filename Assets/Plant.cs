@@ -80,23 +80,6 @@ public class Plant : SerializedMonoBehaviour
 		
 	}
 	
-	float calcIn() {
-		float baseCost = baseChaosIn; //Do intake modifications here
-		float diff = maxChaos - currChaos;
-		
-		return Mathf.Min(baseCost, diff);
-	}
-
-
-	public float exchange(float total) {
-		
-		currChaosIn = Mathf.Min(calcIn(), total);
-		currChaos += currChaosIn;
-		total -= currChaosIn;
-		grow();
-		return total;
-	}
-	
 	public Nutrient exchange(Nutrient soilN) {
 		
 		Nutrient newSoilN = soilN;
@@ -174,44 +157,6 @@ public class Plant : SerializedMonoBehaviour
 			
 		}
 		return CultivateInvoice;
-	}
-	
-	
-	//Distribute nutrients
-	void grow() {
-		currChaosCost = 0;
-		float idleChaosCost = baseChaosCost;
-		sustain(idleChaosCost);
-		
-		float fruitCost = 0;
-		if(hasFruitNode) {
-			fruitCost = fruitNode.getChaosCost();
-			float chaosToSupply = Mathf.Min(fruitCost, currChaos);
-			fruitNode.supply(chaosToSupply);
-			currChaos -= chaosToSupply;
-			currChaosCost += chaosToSupply;
-		}
-		
-	}
-	
-	//Withdraw from totalchaos
-	//Take damage if goal not reached
-	void sustain(float target) {
-		if (target > currChaos) {
-			currChaos = 0;
-			currChaosCost += currChaos;
-			currVit--;
-		} else {
-			currChaos -= target;
-			currChaosCost += target;
-			if (currVit < maxVit) {
-				currVit++;
-			}
-		}
-		
-		if (currVit < 0) {
-			kill();
-		}
 	}
 	
 	public void kill() {

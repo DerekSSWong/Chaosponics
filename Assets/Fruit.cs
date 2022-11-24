@@ -96,15 +96,6 @@ public class Fruit : MonoBehaviour
 		}
 		Debug.Log("Purity set to " + purity);
 	}
-	
-	public float getChaos() {
-		return maxChaos;
-	}
-	
-	public float getBaseRate() {
-		return baseRate;
-	}
-	
 	public float getBasePurity() {
 		return basePurity;
 	}

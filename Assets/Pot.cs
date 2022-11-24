@@ -33,7 +33,6 @@ public class Pot : MonoBehaviour
     void Start()
 	{	
 		Ticker ticker = GameObject.Find("Watcher").GetComponent<Ticker>();
-		ticker.exchangeTick += performExchange;
 		ticker.exchangeTick += exchangeNutrient;
 		
 		//Puts inspector values into internal storage
@@ -52,15 +51,6 @@ public class Pot : MonoBehaviour
 		plantArray = GameObject.FindGameObjectsWithTag("Plant");
 		fruitArray = GameObject.FindGameObjectsWithTag("Fruit");
     }
-	
-	void performExchange(object sender, EventArgs e) {
-		if (plantArray != null && plantArray.Length > 0) {
-			foreach (GameObject plant in plantArray) {
-				chaos = plant.GetComponent<Plant>().exchange(chaos);
-			}
-		}
-		
-	}
 	
 	void exchangeNutrient(object sender, EventArgs e) {
 		if (plantArray != null && plantArray.Length > 0) {

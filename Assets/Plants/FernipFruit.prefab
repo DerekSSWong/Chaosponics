@@ -121,7 +121,7 @@ MonoBehaviour:
     Amount: 5
   BaseAndMaxPurity: {x: 0.37884867, y: 0.6542044}
   PortionPerTick: 0.2
-  ChancePerTick: 1
+  ChancePerTick: 0.5
 --- !u!114 &3282095885953504817
 MonoBehaviour:
   m_ObjectHideFlags: 0

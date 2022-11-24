@@ -19,25 +19,11 @@ public class FruitNode : MonoBehaviour
 	
 	void Start() {
 		fruit = fruitObj.GetComponent<Fruit>();
-		currChaos = 0;
+		//currChaos = 0;
 		currPurity = fruit.getBasePurity();
 		FruitInvoice = fruit.getInvoice();
 		SigmaInvoice = new Invoice();
 		currentInvoice = new Invoice();
-	}
-	
-	public float getChaosCost() {
-		float diff = fruit.getChaos() - currChaos;
-		float demand = fruit.getChaos() * fruit.getBaseRate();
-		return Mathf.Min(diff, demand);
-	}
-	
-	public void supply(float chaosGiven) {
-		currChaos += chaosGiven;
-		if (currChaos >= fruit.getChaos()) {
-			//Instantiate(fruitObj, spawnNode.transform.position, Quaternion.identity);
-			currChaos = 0;
-		}
 	}
 	
 	public void supply (Invoice inv) {
