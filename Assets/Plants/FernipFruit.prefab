@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4954391539562661275}
   - component: {fileID: 4833050846672602265}
-  - component: {fileID: 8088500416439686983}
   - component: {fileID: 3282095885953504817}
   - component: {fileID: 261196282197177238}
   - component: {fileID: -101226233994053583}
   - component: {fileID: 8784251570425693464}
+  - component: {fileID: 8483627944279065925}
   m_Layer: 10
   m_Name: FernipFruit
   m_TagString: Fruit
@@ -89,39 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8088500416439686983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6021366174759189508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ab396741d898942bb0d25cd3f9820c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxChaos: 10
-  baseRate: 0.2
-  basePurity: 30
-  maxPurity: 60
-  rigidFruit: {fileID: -101226233994053583}
-  dropSpeed: 40
-  NutritionalYield:
-  - element: 0
-    Amount: 50
-  - element: 2
-    Amount: 50
-  RequiredIngredients:
-  - element: 0
-    Amount: 30
-  - element: 2
-    Amount: 5
-  - element: 1
-    Amount: 5
-  BaseAndMaxPurity: {x: 0.37884867, y: 0.6542044}
-  PortionPerTick: 0.2
-  ChancePerTick: 0.5
 --- !u!114 &3282095885953504817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,3 +172,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidFruit: {fileID: -101226233994053583}
+--- !u!114 &8483627944279065925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021366174759189508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406463b11ab99ec4da264e5f7a1dcfce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidFruit: {fileID: -101226233994053583}
+  dropSpeed: 30
+  NutritionalYield:
+  - element: 0
+    Amount: 100
+  - element: 2
+    Amount: 50
+  RequiredIngredients:
+  - element: 0
+    Amount: 50
+  - element: 1
+    Amount: 5
+  - element: 2
+    Amount: 5
+  BaseAndMaxPurity: {x: 0.5, y: 0.9}
+  PortionPerTick: 0.2
+  ChancePerTick: 1

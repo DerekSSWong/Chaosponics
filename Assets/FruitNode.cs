@@ -10,7 +10,7 @@ public class FruitNode : MonoBehaviour
 	Fruit fruit;
 	Nutrient FruitNutrient;
 	float chaosProg;
-	Invoice FruitInvoice;
+	public Invoice FruitInvoice;
 	Invoice SigmaInvoice;
 	Invoice currentInvoice;
 	
@@ -24,6 +24,12 @@ public class FruitNode : MonoBehaviour
 		FruitInvoice = fruit.getInvoice();
 		SigmaInvoice = new Invoice();
 		currentInvoice = new Invoice();
+	}
+	
+	void Update() {
+		//fruit = fruitObj.GetComponent<Fruit>();
+		//FruitInvoice = fruit.getInvoice();
+		Debug.Log(FruitInvoice.getVal(Chaos));
 	}
 	
 	public void supply (Invoice inv) {
@@ -58,6 +64,9 @@ public class FruitNode : MonoBehaviour
 	}
 	
 	public Invoice getDemand() {
+		//fruit = fruitObj.GetComponent<Fruit>();
+		FruitInvoice = fruitObj.GetComponent<Fruit>().getInvoice();
+		//Debug.Log(fruit.FruitInvoice.getVal(Chaos));
 		currentInvoice = new Invoice();
 		float rate = fruit.getRate();
 		foreach (Element e in FruitInvoice) {
@@ -66,7 +75,6 @@ public class FruitNode : MonoBehaviour
 			float outVal = Mathf.Min(amount,diff);
 			currentInvoice.setVal(e, outVal);
 		}
-		
 		return currentInvoice;
 	}
 	
@@ -81,6 +89,11 @@ public class FruitNode : MonoBehaviour
 			outcome = false;
 		}
 		return outcome;
+	}
+	
+	public void setInvoice(Invoice inv) {
+		FruitInvoice = inv;
+		Debug.Log(FruitInvoice.getVal(Chaos));
 	}
 	
 }

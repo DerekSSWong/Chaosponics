@@ -7,13 +7,7 @@ using Sirenix.Serialization;
 using static Elements;
 
 public class Fruit : MonoBehaviour
-{	
-	[SerializeField] float maxChaos; //Theoretical chaos value if purity is 100%
-	[SerializeField] float baseRate; //Percentage increase per tick
-	                 float decompRate;
-	[SerializeField] float basePurity;
-	[SerializeField] float maxPurity;
-	                 float purity;
+{
     
 	[SerializeField] Rigidbody2D rigidFruit;
 	[SerializeField] float dropSpeed;
@@ -21,7 +15,7 @@ public class Fruit : MonoBehaviour
 	//Fruit nutrient
 	Nutrient FruitNutrient = new Nutrient();
 	
-	Invoice FruitInvoice = new Invoice();
+	public Invoice FruitInvoice = new Invoice();
 	
 	[TableList]
 	public List<fruitContent> NutritionalYield = new List<fruitContent>();
@@ -40,6 +34,7 @@ public class Fruit : MonoBehaviour
 	public Vector2 BaseAndMaxPurity = new Vector2(0.5f, 0.9f);
 	float baseP;
 	float maxP;
+	float purity;
 	
 	[SerializeField]
 	float PortionPerTick;
@@ -62,12 +57,14 @@ public class Fruit : MonoBehaviour
 		
 		baseP = BaseAndMaxPurity[0];
 		maxP = BaseAndMaxPurity[1];
+		
+		gameObject.GetComponent<FruitNode>().setInvoice(FruitInvoice);
     }
 
     // Update is called once per frame
     void Update()
 	{
-    	
+		
 	}
     
     
@@ -89,19 +86,19 @@ public class Fruit : MonoBehaviour
 	}
 	
 	public void setPurity(float p) {
-		if (p < maxPurity) {
+		if (p < maxP) {
 			purity = p;
 		} else {
-			p = maxPurity;
+			p = maxP;
 		}
-		Debug.Log("Purity set to " + purity);
+		//Debug.Log("Purity set to " + purity);
 	}
 	public float getBasePurity() {
-		return basePurity;
+		return baseP;
 	}
 	
 	public float getMaxPurity() {
-		return maxPurity;
+		return maxP;
 	}
 	
 	public Nutrient getNutrient() {
@@ -109,6 +106,9 @@ public class Fruit : MonoBehaviour
 	}
 	
 	public Invoice getInvoice() {
+		foreach (fruitContent f in RequiredIngredients) {
+			FruitInvoice.setVal(f.element, f.Amount);
+		}
 		return FruitInvoice;
 	}
 	
