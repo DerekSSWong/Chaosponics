@@ -200,4 +200,4 @@ MonoBehaviour:
     Amount: 5
   BaseAndMaxPurity: {x: 0.5, y: 0.9}
   PortionPerTick: 0.2
-  ChancePerTick: 0.1
+  ChancePerTick: 0.3

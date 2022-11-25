@@ -63,10 +63,22 @@ public class Fruit : MonoBehaviour
 	}
 	
 	void OnTriggerEnter2D(Collider2D col) {
-		
+		//Check for fruit to merge with
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.position, 10f);
+		foreach (var hitCollider in hitColliders)
+		{
+			if (hitCollider.gameObject.tag == "Fruit" && hitCollider.gameObject != this.gameObject) {
+				//Merge with fruit here
+				Debug.Log(hitCollider.gameObject.name);
+			}
+		}
 	}
-    
-    
+	
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(this.transform.position, 1);
+	}
     
 	public float exchange(float total) {
 		
@@ -122,5 +134,9 @@ public class Fruit : MonoBehaviour
 	
 	public void spawn(Transform rootnode) {
 		Instantiate(gameObject, rootnode.position, Quaternion.identity);
+	}
+	
+	public void merge() {
+		
 	}
 }
