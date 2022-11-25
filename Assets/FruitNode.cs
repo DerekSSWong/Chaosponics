@@ -60,7 +60,7 @@ public class FruitNode : MonoBehaviour
 	}
 	
 	public float getProgress() {
-		return SigmaInvoice.getVal(Chaos);
+		return SigmaInvoice.getVal(Chaos) / FruitInvoice.getVal(Chaos);
 	}
 	
 	public Invoice getDemand() {
@@ -89,11 +89,6 @@ public class FruitNode : MonoBehaviour
 			outcome = false;
 		}
 		return outcome;
-	}
-	
-	public void setInvoice(Invoice inv) {
-		FruitInvoice = inv;
-		Debug.Log(FruitInvoice.getVal(Chaos));
 	}
 	
 }

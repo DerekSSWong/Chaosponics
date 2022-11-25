@@ -46,19 +46,7 @@ public class Fruit : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
 	{
-		foreach (fruitContent f in NutritionalYield) {
-			FruitNutrient.setCap(f.element, f.Amount);
-			FruitNutrient.setVal(f.element, f.Amount);
-		}
 		
-		foreach (fruitContent f in RequiredIngredients) {
-			FruitInvoice.setVal(f.element, f.Amount);
-		}
-		
-		baseP = BaseAndMaxPurity[0];
-		maxP = BaseAndMaxPurity[1];
-		
-		gameObject.GetComponent<FruitNode>().setInvoice(FruitInvoice);
     }
 
     // Update is called once per frame
@@ -114,6 +102,14 @@ public class Fruit : MonoBehaviour
 			FruitInvoice.setVal(f.element, f.Amount);
 		}
 		return FruitInvoice;
+	}
+	
+	public float getBaseP() {
+		return BaseAndMaxPurity[0];
+	}
+	
+	public float getMaxP() {
+		return BaseAndMaxPurity[1];
 	}
 	
 	public float getRate() {
