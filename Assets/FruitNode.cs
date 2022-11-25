@@ -9,54 +9,53 @@ public class FruitNode : MonoBehaviour
 	[SerializeField] GameObject spawnNode;
 	Fruit fruit;
 	Nutrient FruitNutrient;
-	float chaosProg;
+
 	public Invoice FruitInvoice;
 	Invoice SigmaInvoice;
 	Invoice currentInvoice;
 	
-	float currChaos;
 	float currPurity;
 	
 	void Start() {
 		fruit = fruitObj.GetComponent<Fruit>();
 		//currChaos = 0;
-		currPurity = fruit.getBasePurity();
+		currPurity = fruit.getBaseP();
 		FruitInvoice = fruit.getInvoice();
 		SigmaInvoice = new Invoice();
 		currentInvoice = new Invoice();
 	}
 	
 	void Update() {
-		//fruit = fruitObj.GetComponent<Fruit>();
-		//FruitInvoice = fruit.getInvoice();
-		Debug.Log(FruitInvoice.getVal(Chaos));
+		
 	}
 	
 	public void supply (Invoice inv) {
-		if (inv.getVal(Chaos) < FruitInvoice.getVal(Chaos) * fruit.getRate()) {
+		if (inv.getVal(Chaos) < currentInvoice.getVal(Chaos)) {
+			//Debug.Log("Demand: " + currentInvoice.getVal(Chaos) + " Supply: " + inv.getVal(Chaos));
 			currPurity *= 0.9f;
 		}
 		SigmaInvoice.add(inv);
 		if (SigmaInvoice.getVal(Chaos) >= FruitInvoice.getVal(Chaos)) {
-			spawnFruit();
+			spawnFruit(currPurity);
 		}
+		
 	}
 	
-	public void spawnFruit() {
+	public void spawnFruit(float p) {
 		foreach (Element e in FruitInvoice) {
-			if (e == Chaos) {
-				continue;
-			} else if (SigmaInvoice.getVal(e) >= FruitInvoice.getVal(e)) {
-				currPurity *= 1.1f;
+			if (SigmaInvoice.getVal(e) >= FruitInvoice.getVal(e) && e != Chaos && FruitInvoice.getVal(e) != 0) {
+				p *= 1.1f;
 			}
 		}
-		if (currPurity > fruit.getMaxPurity()) {
-			currPurity = fruit.getMaxPurity();
+		if (p > fruit.getMaxP()) {
+			p = fruit.getMaxP();
 		}
-		fruit.setPurity(currPurity);
-		fruit.spawn(this.transform);
+
+		fruit.spawn(this.transform, p);
+		
 		SigmaInvoice = new Invoice();
-		currPurity = fruit.getBasePurity();
+		currPurity = fruit.getBaseP();
+		
 	}
 	
 	public float getProgress() {
@@ -75,6 +74,7 @@ public class FruitNode : MonoBehaviour
 			float outVal = Mathf.Min(amount,diff);
 			currentInvoice.setVal(e, outVal);
 		}
+		//Debug.Log("Chaos Demand: " + currentInvoice.getVal(Chaos));
 		return currentInvoice;
 	}
 	

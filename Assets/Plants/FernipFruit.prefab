@@ -199,5 +199,7 @@ MonoBehaviour:
   - element: 2
     Amount: 5
   BaseAndMaxPurity: {x: 0.5, y: 0.9}
-  PortionPerTick: 0.2
-  ChancePerTick: 0.3
+  currP: 0.5
+  PortionPerTick: 0.1
+  ChancePerTick: 1
+  DetectorRange: 0.56

@@ -34,7 +34,7 @@ public class Fruit : MonoBehaviour
 	public Vector2 BaseAndMaxPurity = new Vector2(0.5f, 0.9f);
 	float baseP;
 	float maxP;
-	float purity;
+	[SerializeField] float currP;
 	
 	[SerializeField]
 	float PortionPerTick;
@@ -42,11 +42,16 @@ public class Fruit : MonoBehaviour
 	[SerializeField]
 	float ChancePerTick;
 	
+	[Range(0.0f, 2.0f)]
+	public float DetectorRange;
 	
 	// Start is called before the first frame update
     void Start()
-	{
-		
+	{	
+		maxP = getMaxP();
+		baseP = getBaseP();
+		FruitNutrient = getNutrient();
+		FruitInvoice = getInvoice();
     }
 
     // Update is called once per frame
@@ -64,7 +69,7 @@ public class Fruit : MonoBehaviour
 	
 	void OnTriggerEnter2D(Collider2D col) {
 		//Check for fruit to merge with
-		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.position, 10f);
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.position, DetectorRange);
 		foreach (var hitCollider in hitColliders)
 		{
 			if (hitCollider.gameObject.tag == "Fruit" && hitCollider.gameObject != this.gameObject) {
@@ -77,7 +82,7 @@ public class Fruit : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(this.transform.position, 1);
+		Gizmos.DrawWireSphere(this.transform.position, DetectorRange);
 	}
     
 	public float exchange(float total) {
@@ -86,19 +91,18 @@ public class Fruit : MonoBehaviour
 	}
 	
 	public void setPurity(float p) {
-		if (p < maxP) {
-			purity = p;
-		} else {
-			p = maxP;
-		}
-		//Debug.Log("Purity set to " + purity);
+		currP = p;
 	}
-	public float getBasePurity() {
-		return baseP;
+	public float getBaseP() {
+		return BaseAndMaxPurity[0];
 	}
 	
-	public float getMaxPurity() {
-		return maxP;
+	public float getMaxP() {
+		return BaseAndMaxPurity[1];
+	}
+	
+	public float getCurrP() {
+		return currP;
 	}
 	
 	public Nutrient getNutrient() {
@@ -116,14 +120,6 @@ public class Fruit : MonoBehaviour
 		return FruitInvoice;
 	}
 	
-	public float getBaseP() {
-		return BaseAndMaxPurity[0];
-	}
-	
-	public float getMaxP() {
-		return BaseAndMaxPurity[1];
-	}
-	
 	public float getRate() {
 		return PortionPerTick;
 	}
@@ -132,7 +128,9 @@ public class Fruit : MonoBehaviour
 		return ChancePerTick;
 	}
 	
-	public void spawn(Transform rootnode) {
+	public void spawn(Transform rootnode, float purity) {
+		setPurity(purity);
+		Debug.Log("Fruit spawn with " + currP + " purity.");
 		Instantiate(gameObject, rootnode.position, Quaternion.identity);
 	}
 	

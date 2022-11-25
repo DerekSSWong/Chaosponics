@@ -61,12 +61,20 @@ public class Nutrient : IEnumerable<Element>
 			result.setVal(e, finalVal);
 			withdraw(e, finalVal);
 		}
+		
 		return result;
 	}
 	
 	public void deposit(Invoice inv) {
 		foreach (Element e in inv) {
 			deposit(e, inv.getVal(e));
+		}
+	}
+	
+	public void combine(Nutrient n) {
+		foreach (Element e in n) {
+			nutrient[e][0] += n.getVal(e);
+			nutrient[e][1] += n.getVal(e);
 		}
 	}
 	

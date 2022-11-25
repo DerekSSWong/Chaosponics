@@ -9,7 +9,7 @@ using static Elements;
 public class Plant : SerializedMonoBehaviour
 {
 	Nutrient internalNutrient = new Nutrient();
-	NutrientRates currentRates = new NutrientRates();
+	//NutrientRates currentRates = new NutrientRates();
 	
 	[SerializeField] float maxVit;
 	float maxChaos;
@@ -59,7 +59,7 @@ public class Plant : SerializedMonoBehaviour
 		//Loads capacity data into nutrients
 		foreach (var item in Capacitors) {
 			internalNutrient.setNutrient(item.Key, new float[] {item.Value.ChargeRate, item.Value.Capacity});
-			currentRates.setRates(item.Key, new float[] {item.Value.ChargeRate, item.Value.DischargeRate});
+			//currentRates.setRates(item.Key, new float[] {item.Value.ChargeRate, item.Value.DischargeRate});
 			//Debug.Log(internalNutrient.getVal(index.Key) + " , " + internalNutrient.getCap(index.Key));
 		}
 		
@@ -149,14 +149,6 @@ public class Plant : SerializedMonoBehaviour
 		}
 		
 		return idle;
-	}
-	
-	private Invoice calcCultivate(Nutrient newSoilN) {
-		CultivateInvoice = new Invoice();
-		if (hasFruitNode) {
-			
-		}
-		return CultivateInvoice;
 	}
 	
 	public void kill() {
