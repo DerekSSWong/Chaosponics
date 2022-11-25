@@ -102,6 +102,10 @@ public class Fruit : MonoBehaviour
 	}
 	
 	public Nutrient getNutrient() {
+		foreach (fruitContent f in NutritionalYield) {
+			FruitNutrient.setCap(f.element, f.Amount);
+			FruitNutrient.setVal(f.element, f.Amount);
+		}
 		return FruitNutrient;
 	}
 	
