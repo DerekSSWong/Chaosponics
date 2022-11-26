@@ -55,7 +55,17 @@ public class Pot : MonoBehaviour
 	void exchangeNutrient(object sender, EventArgs e) {
 		if (plantArray != null && plantArray.Length > 0) {
 			foreach (GameObject plant in plantArray) {
-				nutrient = plant.GetComponent<Plant>().exchange(nutrient);
+				if (plant != null) {
+					nutrient = plant.GetComponent<Plant>().exchange(nutrient);
+				}
+			}
+		}
+		
+		if (fruitArray != null && fruitArray.Length > 0) {
+			foreach (GameObject fruit in fruitArray) {
+				if (fruit != null) {
+					nutrient = fruit.GetComponent<Fruit>().exchange(nutrient);
+				}
 			}
 		}
 		
@@ -65,5 +75,6 @@ public class Pot : MonoBehaviour
 			item.capacity = nutrient.getCap(item.element);
 		}
 	}
+	
 	
 }
