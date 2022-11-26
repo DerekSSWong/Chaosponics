@@ -96,7 +96,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6021366174759189508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e78a102378cfbe1428b077f6c9c4ca99, type: 3}
   m_Name: 
@@ -200,6 +200,6 @@ MonoBehaviour:
     Amount: 5
   BaseAndMaxPurity: {x: 0.5, y: 0.9}
   currP: 0.5
-  PortionPerTick: 0.1
-  ChancePerTick: 1
+  PortionPerTick: 0.2
+  ChancePerTick: 0.5
   DetectorRange: 0.56

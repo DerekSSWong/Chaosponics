@@ -112,9 +112,27 @@ public class Fruit : MonoBehaviour
 		Gizmos.DrawWireSphere(this.transform.position, DetectorRange);
 	}
     
-	public float exchange(float total) {
+	public Nutrient exchange(Nutrient soilN) {
+		Nutrient newSoilN = soilN;
+		float integrity = FruitNutrient.getVal(Chaos) / FruitNutrient.getCap(Chaos);
+		float decompRate = (1 - currP)*(1 - integrity);
+		Invoice compost = new Invoice();
+		foreach (Element e in FruitNutrient) {
+			if (FruitNutrient.getVal(e) > 0) {
+				float toCompost = FruitNutrient.getVal(e) * decompRate;
+				compost.setVal(e, toCompost);
+			}
+		}
+		compost = FruitNutrient.withdraw(compost);
+		foreach (Element e in compost) {
+			if (compost.getVal(e) > 0) {
+				float postP = compost.getVal(e) * currP;
+				compost.setVal(e, postP);
+			}
+		}
+		newSoilN.deposit(compost);
 		
-		return total;
+		return newSoilN;
 	}
 	
 	public void setPurity(float p) {
