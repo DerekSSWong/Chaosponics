@@ -70,13 +70,40 @@ public class Fruit : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D col) {
 		//Check for fruit to merge with
 		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.position, DetectorRange);
-		foreach (var hitCollider in hitColliders)
-		{
-			if (hitCollider.gameObject.tag == "Fruit" && hitCollider.gameObject != this.gameObject) {
-				//Merge with fruit here
-				Debug.Log(hitCollider.gameObject.name);
+		GameObject fruitToMerge = findFirstValidFruit(hitColliders);
+		if (fruitToMerge != null) {
+			mergeInto(fruitToMerge);
+		}
+		
+	}
+	
+	GameObject findFirstValidFruit(Collider2D[] array) {
+		GameObject fruit = null;
+		foreach (var hitCollider in array) {
+			GameObject obj = hitCollider.gameObject;
+			if (obj.GetComponent<SpriteRenderer>().sprite == gameObject.GetComponent<SpriteRenderer>().sprite && obj != this.gameObject) {
+				Fruit objF = obj.GetComponent<Fruit>();
+				if (Mathf.Abs(objF.getCurrP() - currP) <= 0.4f) {
+					fruit = obj;
+					break;
+				}
 			}
 		}
+		return fruit;
+	}
+	
+	void mergeInto(GameObject otherFruit) {
+		otherFruit.GetComponent<Fruit>().accept(FruitNutrient, currP);
+		Destroy(gameObject);
+	}
+	
+	public void accept(Nutrient n, float p) {
+		float effectiveN = FruitNutrient.getVal(Chaos)*currP + n.getVal(Chaos)*p;
+		float theoreticalN = FruitNutrient.getVal(Chaos) + n.getVal(Chaos);
+		float newP = effectiveN / theoreticalN;
+		FruitNutrient.combine(n);
+		currP = newP;
+		Debug.Log("Nutrient: " + FruitNutrient.getVal(Chaos) + " Purity: " + newP);
 	}
 	
 	void OnDrawGizmos()
@@ -110,6 +137,10 @@ public class Fruit : MonoBehaviour
 			FruitNutrient.setCap(f.element, f.Amount);
 			FruitNutrient.setVal(f.element, f.Amount);
 		}
+		return FruitNutrient;
+	}
+	
+	public Nutrient getCurrN() {
 		return FruitNutrient;
 	}
 	
