@@ -45,6 +45,10 @@ public class Fruit : MonoBehaviour
 	[Range(0.0f, 2.0f)]
 	public float DetectorRange;
 	
+	bool onGround;
+	
+	[SerializeField] float internalChaos;
+	
 	// Start is called before the first frame update
     void Start()
 	{	
@@ -52,12 +56,13 @@ public class Fruit : MonoBehaviour
 		baseP = getBaseP();
 		FruitNutrient = getNutrient();
 		FruitInvoice = getInvoice();
+		onGround = false;
     }
 
     // Update is called once per frame
     void Update()
 	{
-		
+		internalChaos = FruitNutrient.getVal(Chaos);
 	}
     
     
@@ -74,6 +79,7 @@ public class Fruit : MonoBehaviour
 		if (fruitToMerge != null) {
 			mergeInto(fruitToMerge);
 		}
+		onGround = true;
 		
 	}
 	
@@ -83,7 +89,7 @@ public class Fruit : MonoBehaviour
 			GameObject obj = hitCollider.gameObject;
 			if (obj.GetComponent<SpriteRenderer>().sprite == gameObject.GetComponent<SpriteRenderer>().sprite && obj != this.gameObject) {
 				Fruit objF = obj.GetComponent<Fruit>();
-				if (Mathf.Abs(objF.getCurrP() - currP) <= 0.4f) {
+				if (Mathf.Abs(objF.getCurrP() - currP) <= 0.4f && objF.isOnGround()) {
 					fruit = obj;
 					break;
 				}
@@ -115,21 +121,25 @@ public class Fruit : MonoBehaviour
 	public Nutrient exchange(Nutrient soilN) {
 		Nutrient newSoilN = soilN;
 		float integrity = FruitNutrient.getVal(Chaos) / FruitNutrient.getCap(Chaos);
-		float decompRate = (1 - currP)*(1 - integrity);
+		float decompRate = (1 - currP)*(1/(integrity+0.01f));
+		Debug.Log(integrity + " , " + decompRate);
 		Invoice compost = new Invoice();
-		foreach (Element e in FruitNutrient) {
-			if (FruitNutrient.getVal(e) > 0) {
-				float toCompost = FruitNutrient.getVal(e) * decompRate;
-				compost.setVal(e, toCompost);
-			}
-		}
+			//foreach (Element e in FruitNutrient) {
+			//	if (FruitNutrient.getVal(e) > 0) {
+			//		float toCompost = FruitNutrient.getVal(e) * decompRate;
+			//		compost.setVal(e, toCompost);
+			//	}
+			//}
+			//compost = FruitNutrient.withdraw(compost);
+			//foreach (Element e in compost) {
+			//	if (compost.getVal(e) > 0) {
+			//		float postP = compost.getVal(e) * currP;
+			//		compost.setVal(e, postP);
+			//	}
+			//}
+		compost.setVal(Chaos, FruitNutrient.getVal(Chaos) * decompRate);
 		compost = FruitNutrient.withdraw(compost);
-		foreach (Element e in compost) {
-			if (compost.getVal(e) > 0) {
-				float postP = compost.getVal(e) * currP;
-				compost.setVal(e, postP);
-			}
-		}
+		Debug.Log("Composted: " + compost.getVal(Chaos));
 		newSoilN.deposit(compost);
 		
 		return newSoilN;
@@ -183,7 +193,7 @@ public class Fruit : MonoBehaviour
 		Instantiate(gameObject, rootnode.position, Quaternion.identity);
 	}
 	
-	public void merge() {
-		
+	public bool isOnGround() {
+		return onGround;
 	}
 }

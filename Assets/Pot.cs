@@ -64,7 +64,9 @@ public class Pot : MonoBehaviour
 		if (fruitArray != null && fruitArray.Length > 0) {
 			foreach (GameObject fruit in fruitArray) {
 				if (fruit != null) {
-					nutrient = fruit.GetComponent<Fruit>().exchange(nutrient);
+					if (fruit.GetComponent<Fruit>().isOnGround()) {
+						nutrient = fruit.GetComponent<Fruit>().exchange(nutrient);
+					}
 				}
 			}
 		}
