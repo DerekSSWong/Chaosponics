@@ -124,6 +124,7 @@ public class Fruit : MonoBehaviour
 		float decompRate = (1 - currP)*(1/(integrity+0.01f));
 		Debug.Log(integrity + " , " + decompRate);
 		Invoice compost = new Invoice();
+		//1.03^155-x  -4
 			//foreach (Element e in FruitNutrient) {
 			//	if (FruitNutrient.getVal(e) > 0) {
 			//		float toCompost = FruitNutrient.getVal(e) * decompRate;
