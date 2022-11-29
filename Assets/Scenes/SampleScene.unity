@@ -535,6 +535,24 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"Capacitors.{0es}","value":{"$id":0,"$type":"Plant+Capacitor,
+        Assembly-CSharp","Capacity":100,"ChargeRate":5,"DischargeRate":1}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"Capacitors.{0es}.DischargeRate","value":{"$id":0,"$type":"System.Single,
+        mscorlib",1}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2656494000318259098, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: m_Name
       value: Fernip
@@ -902,7 +920,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &457361593
 MonoBehaviour:
@@ -1721,7 +1739,7 @@ RectTransform:
   - {fileID: 2074403908}
   - {fileID: 199979459}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1853,7 +1871,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342074022
 GameObject:
@@ -1937,7 +1955,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348459890
 GameObject:
@@ -2074,6 +2092,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348459890}
   m_CullTransparentMesh: 1
+--- !u!1001 &1437861659
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -683453973727336343, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -683453973727336343, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.1777318
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5299536
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.072391406
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798096, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736378991453798098, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
+      propertyPath: m_Name
+      value: AcidMelon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abc4151bb6274b94cb674f8181d0d0ce, type: 3}
 --- !u!1 &1603235228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,7 +2507,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1676270479
 MonoBehaviour:
@@ -2445,6 +2524,9 @@ MonoBehaviour:
   ListOfNutrients:
   - element: 0
     current: 500
+    capacity: 1000
+  - element: 2
+    current: 0
     capacity: 1000
 --- !u!61 &1676270480
 BoxCollider2D:
@@ -2538,7 +2620,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1722985231
 GameObject:
@@ -2757,7 +2839,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1956165992
 GameObject:

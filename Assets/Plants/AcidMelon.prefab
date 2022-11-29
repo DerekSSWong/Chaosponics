@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6736378991453798096}
   - component: {fileID: 6736378991453798099}
   - component: {fileID: 6736378991453798097}
-  - component: {fileID: 5269787018333125344}
+  - component: {fileID: -683453973727336343}
   m_Layer: 7
   m_Name: AcidMelon
   m_TagString: Plant
@@ -478,7 +478,7 @@ PolygonCollider2D:
       - {x: 2.78, y: 0.555}
       - {x: 2.37, y: 0.555}
       - {x: 2.36, y: 0.565}
---- !u!114 &5269787018333125344
+--- !u!114 &-683453973727336343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6736378991453798098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60801babb2d8e364c8393b4eed982e39, type: 3}
+  m_Script: {fileID: 11500000, guid: ce483178a0a808040a40e86b32d367ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -525,6 +525,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  maxVit: 1
+  maxVit: 100
   ProducesFruit: 0
-  Fruit: {fileID: 0}
+  FruitNode: {fileID: 0}
