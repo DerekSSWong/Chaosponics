@@ -121,8 +121,11 @@ public class Fruit : MonoBehaviour
 	public Nutrient exchange(Nutrient soilN) {
 		Nutrient newSoilN = soilN;
 		float integrity = FruitNutrient.getVal(Chaos) / FruitNutrient.getCap(Chaos);
-		float decompRate = (1 - currP)*(1/(integrity+0.01f));
-		Debug.Log(integrity + " , " + decompRate);
+		int purityInt = (int) (currP * 100);
+		
+		int x = 155 - purityInt;
+		float decompRate = Mathf.Pow(1.03f, x) - 4;
+		Debug.Log("Decomp rate: " + decompRate);
 		Invoice compost = new Invoice();
 		//1.03^155-x  -4
 			//foreach (Element e in FruitNutrient) {
