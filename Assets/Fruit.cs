@@ -120,33 +120,36 @@ public class Fruit : MonoBehaviour
     
 	public Nutrient exchange(Nutrient soilN) {
 		Nutrient newSoilN = soilN;
-		float integrity = FruitNutrient.getVal(Chaos) / FruitNutrient.getCap(Chaos);
-		int purityInt = (int) (currP * 100);
+		Invoice toCompost = calcDecomp();
+		//Debug.Log(string.Format("Purity: {0}, Decomp: {1}", currP, toCompost.getVal(Chaos)));
+		toCompost = FruitNutrient.withdraw(toCompost);
+		toCompost = corrupt(toCompost);
 		
-		int x = 155 - purityInt;
-		float decompRate = Mathf.Pow(1.03f, x) - 4;
-		Debug.Log("Decomp rate: " + decompRate);
-		Invoice compost = new Invoice();
-		//1.03^155-x  -4
-			//foreach (Element e in FruitNutrient) {
-			//	if (FruitNutrient.getVal(e) > 0) {
-			//		float toCompost = FruitNutrient.getVal(e) * decompRate;
-			//		compost.setVal(e, toCompost);
-			//	}
-			//}
-			//compost = FruitNutrient.withdraw(compost);
-			//foreach (Element e in compost) {
-			//	if (compost.getVal(e) > 0) {
-			//		float postP = compost.getVal(e) * currP;
-			//		compost.setVal(e, postP);
-			//	}
-			//}
-		compost.setVal(Chaos, FruitNutrient.getVal(Chaos) * decompRate);
-		compost = FruitNutrient.withdraw(compost);
-		Debug.Log("Composted: " + compost.getVal(Chaos));
-		newSoilN.deposit(compost);
-		
+		newSoilN.deposit(toCompost);
 		return newSoilN;
+	}
+	
+	
+	Invoice calcDecomp() {
+		Invoice decompInvoice = new Invoice();
+		//1.03^155-x  -4
+		float portion = (Mathf.Pow(1.03f, 155f-getCurrPPercent()) - 4f) / 100f;
+		//Debug.Log(portion);
+		float integ = getIntegPercent();
+		if (integ >= UnityEngine.Random.Range(0f, 100f)) {
+			foreach (Element e in decompInvoice) {
+				decompInvoice.setVal(e, FruitNutrient.getVal(e) * portion);
+			}
+		}
+		
+		return decompInvoice;
+	}
+	
+	Invoice corrupt(Invoice decomp) {
+		foreach (Element e in decomp) {
+			decomp.setVal(e, decomp.getVal(e) * currP);
+		}
+		return decomp;
 	}
 	
 	public void setPurity(float p) {
@@ -162,6 +165,22 @@ public class Fruit : MonoBehaviour
 	
 	public float getCurrP() {
 		return currP;
+	}
+	
+	public float getCurrPPercent() {
+		float pper = currP * 100f;
+		pper = Mathf.Round(pper);
+		return pper;
+	}
+	
+	public float getIntegPercent() {
+		
+		float curr = FruitNutrient.getVal(Chaos);
+		float cap = FruitNutrient.getCap(Chaos);
+	
+		float integrity = (curr/cap) * 100f;
+		integrity = Mathf.Round(integrity);
+		return integrity;
 	}
 	
 	public Nutrient getNutrient() {
