@@ -12,9 +12,11 @@ public class Plant : SerializedMonoBehaviour
 	//NutrientRates currentRates = new NutrientRates();
 	
 	[SerializeField] float maxVit;
+	
 	float maxChaos;
 	float baseChaosIn;
 	float baseChaosCost;
+	
 	
 	float currVit;
 	float currChaos;
@@ -82,6 +84,8 @@ public class Plant : SerializedMonoBehaviour
 	
 	public Nutrient exchange(Nutrient soilN) {
 		
+		Brain testBrain = this.GetComponent<Brain>();
+		testBrain.ping();
 		Nutrient newSoilN = soilN;
 		SigmaInvoice = new Invoice();
 		DeltaInvoice = new Invoice();
