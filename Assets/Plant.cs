@@ -84,14 +84,12 @@ public class Plant : SerializedMonoBehaviour
 	
 	public Nutrient exchange(Nutrient soilN) {
 		
-		Brain testBrain = this.GetComponent<Brain>();
-		testBrain.ping();
 		Nutrient newSoilN = soilN;
 		SigmaInvoice = new Invoice();
 		DeltaInvoice = new Invoice();
 		
 		//Generate initial invoice
-		IntakeInvoice = calcIntake(newSoilN);
+		IntakeInvoice = calcIntake(newSoilN); //IntakeInvoice = Brain.calcIntake(InternalNutrient, soilN);
 		//Submit invoice, updated to actual values taken from soil
 		IntakeInvoice = newSoilN.withdraw(IntakeInvoice);
 		//Deposits final value to internal nutrient
@@ -99,7 +97,7 @@ public class Plant : SerializedMonoBehaviour
 		DeltaInvoice.add(IntakeInvoice);
 		
 		//Idle cost
-		IdleInvoice = calcIdle(newSoilN);
+		IdleInvoice = calcIdle(newSoilN); //IdleInvoice = Brain.calcIdle(InternalNutrient, soilN)
 		IdleInvoice = internalNutrient.withdraw(IdleInvoice);
 		SigmaInvoice.add(IdleInvoice);
 		
@@ -110,7 +108,7 @@ public class Plant : SerializedMonoBehaviour
 		}
 		
 		//Cultivate cost
-		if (hasFruitNode) {
+		if (hasFruitNode) {            //Brain.calcFruitDemand();
 			if (FruitNode.roll()) {
 				Invoice fruitInvoice = FruitNode.getDemand();
 				CultivateInvoice = internalNutrient.withdraw(fruitInvoice);
