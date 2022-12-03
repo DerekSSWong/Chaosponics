@@ -12,4 +12,13 @@ public class FernipBrain : Brain
 	//myDelegate.Invoke(4);
 	//void Foo(int a) {}
 	
+	public override Invoice calcIdleCost() {
+		Invoice IdleInvoice = new Invoice();
+		Nutrient PlantN = getPlantN();
+		Nutrient SoilN = getSoilN();
+		
+		Debug.Log(SoilN.getPortion(Elements.Iron));
+		
+		return IdleInvoice;
+	}
 }

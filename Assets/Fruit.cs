@@ -30,6 +30,8 @@ public class Fruit : MonoBehaviour
 		public float Amount;
 	}
 	
+	[SerializeField] bool isMetallic;
+	
 	[MinMaxSlider(0.01f, 1f, true)]
 	public Vector2 BaseAndMaxPurity = new Vector2(0.5f, 0.9f);
 	float baseP;

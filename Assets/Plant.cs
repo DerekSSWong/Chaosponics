@@ -67,11 +67,14 @@ public class Plant : SerializedMonoBehaviour
 			//Debug.Log(internalNutrient.getVal(index.Key) + " , " + internalNutrient.getCap(index.Key));
 		}
 		
-		Brain = gameObject.GetComponent<Brain>();
+		
 		maxChaos = Capacitors[Chaos].Capacity;
 		baseChaosIn = Capacitors[Chaos].ChargeRate;
 		baseChaosCost = Capacitors[Chaos].DischargeRate;
 		currChaos = Capacitors[Chaos].DischargeRate;
+		
+		Brain = gameObject.GetComponent<Brain>();
+		
 		
 		SigmaInvoice = new Invoice();
 		DeltaInvoice = new Invoice();
@@ -89,6 +92,8 @@ public class Plant : SerializedMonoBehaviour
 		
 		Nutrient newSoilN = soilN;
 		Brain.updateSoilN(soilN);
+		
+		
 		
 		SigmaInvoice = new Invoice();
 		DeltaInvoice = new Invoice();

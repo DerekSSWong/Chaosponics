@@ -16,11 +16,11 @@ public class Brain : MonoBehaviour
 	void Start() {
 	}
 	
-	Nutrient getPlantN(){
+	protected Nutrient getPlantN(){
 		return gameObject.GetComponent<Plant>().getNutrient();
 	}
 	
-	Nutrient getSoilNutrient(){
+	protected Nutrient getSoilN(){
 		return SoilN;
 	}
 	
@@ -44,6 +44,12 @@ public class Brain : MonoBehaviour
 		Invoice IdleInvoice = new Invoice();
 		
 		return IdleInvoice;
+	}
+	
+	public virtual Invoice calcIdleBuff() {
+		Invoice BuffAmount = new Invoice();
+		
+		return BuffAmount;
 	}
     
 }
