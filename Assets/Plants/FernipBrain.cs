@@ -12,7 +12,4 @@ public class FernipBrain : Brain
 	//myDelegate.Invoke(4);
 	//void Foo(int a) {}
 	
-	public override void ping() {
-		Debug.Log("Ping");
-	}
 }

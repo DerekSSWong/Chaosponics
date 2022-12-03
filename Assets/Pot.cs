@@ -42,7 +42,6 @@ public class Pot : MonoBehaviour
 		}
 		
 		chaos = nutrient.getVal(Chaos);
-	    
     }
 
     // Update is called once per frame

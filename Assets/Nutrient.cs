@@ -78,6 +78,15 @@ public class Nutrient : IEnumerable<Element>
 		}
 	}
 	
+	public float getPortion(Element e) {
+		float total = 0f;
+		foreach (var item in nutrient) {
+			total += item.Value[0];
+		}
+		float portion = nutrient[e][0] / total;
+		return portion;
+	}
+	
 	public IEnumerator<Element> GetEnumerator() {
 		foreach(Element e in Element.GetValues(typeof(Element))) {
 			yield return e;

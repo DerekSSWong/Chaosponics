@@ -29,6 +29,8 @@ public class Plant : SerializedMonoBehaviour
 	Invoice IdleInvoice;
 	Invoice CultivateInvoice;
 	
+	Brain Brain;
+	
 	FruitNode fruitNode;
 	bool hasFruitNode;
 	
@@ -65,6 +67,7 @@ public class Plant : SerializedMonoBehaviour
 			//Debug.Log(internalNutrient.getVal(index.Key) + " , " + internalNutrient.getCap(index.Key));
 		}
 		
+		Brain = gameObject.GetComponent<Brain>();
 		maxChaos = Capacitors[Chaos].Capacity;
 		baseChaosIn = Capacitors[Chaos].ChargeRate;
 		baseChaosCost = Capacitors[Chaos].DischargeRate;
@@ -85,6 +88,8 @@ public class Plant : SerializedMonoBehaviour
 	public Nutrient exchange(Nutrient soilN) {
 		
 		Nutrient newSoilN = soilN;
+		Brain.updateSoilN(soilN);
+		
 		SigmaInvoice = new Invoice();
 		DeltaInvoice = new Invoice();
 		
@@ -166,6 +171,9 @@ public class Plant : SerializedMonoBehaviour
 	public float getCurrChaos() {return internalNutrient.getVal(Chaos);}
 	public float getCurrChaosIn() {return IntakeInvoice.getVal(Chaos);}
 	public float getCurrChaosCost() {return SigmaInvoice.getVal(Chaos);}
+	
+	public Nutrient getNutrient() {return internalNutrient;}
+	
 	
 	public float getFruitProgress() {
 		float progress = 0;
