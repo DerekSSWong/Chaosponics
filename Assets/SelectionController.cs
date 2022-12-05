@@ -48,7 +48,8 @@ public class SelectionController : MonoBehaviour
 					
 					//Interacts with TextField here
 					textField.GetComponent<TMPro.TextMeshProUGUI>().text = string.Join(',' , toStringList(sample, true));
-					plantInfo.GetComponent<PlantInfo>().setPlant(focus);
+					///HERE///
+					//plantInfo.GetComponent<PlantInfo>().setPlant(focus);
 					
 					//Create window here
 				}

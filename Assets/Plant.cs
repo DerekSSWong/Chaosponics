@@ -50,6 +50,26 @@ public class Plant : SerializedMonoBehaviour
 	public Dictionary<Element, Capacitor> Capacitors = new Dictionary<Element, Capacitor>();
 	
 	
+	[TableList]
+	public List<Ingredient>  Prime = new List<Ingredient>();
+	
+	[TableList]
+	public List<Ingredient>  Agent = new List<Ingredient>();
+	
+	[TableList]
+	public List<Ingredient>  Catalyst = new List<Ingredient>();
+	
+	[Serializable]
+	public class Ingredient {
+		
+		[TableColumnWidth(60)]
+		
+		public Element element;
+		public float rate;
+		public float capacity;
+	}
+	
+	
 	
 	void Start()
 	{	
@@ -88,10 +108,13 @@ public class Plant : SerializedMonoBehaviour
 		
 	}
 	
+	void makeInvoices() {
+		
+	}
+	
 	public Nutrient exchange(Nutrient soilN) {
 		
 		Nutrient newSoilN = soilN;
-		Brain.updateSoilN(soilN);
 		
 		
 		

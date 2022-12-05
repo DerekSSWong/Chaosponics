@@ -13,7 +13,14 @@ public class Brain : MonoBehaviour
 	
 	protected Nutrient SoilN;
 	
+	protected Invoice PrimeInvoice;
+	protected Invoice AgentInvoice;
+	protected Invoice CatalystInvoice;
+	protected Invoice OutputInvoice;
+
+	
 	void Start() {
+		setInvoices();
 	}
 	
 	protected Nutrient getPlantN(){
@@ -51,43 +58,25 @@ public class Brain : MonoBehaviour
 		
 		return BuffAmount;
 	}
+	
+	public virtual void setInvoices() {
+		PrimeInvoice = new Invoice();
+		AgentInvoice = new Invoice();
+		CatalystInvoice = new Invoice();
+	}
     
 }
 
 public class Recipe {
 	
 	private Invoice InputInvoice;
+	
+	private Invoice PrimeInvoice;
+	private Invoice AgentInvoice;
+	private Invoice CatalystInvoice;
+	
 	private Invoice OutputInvoice;
 	
 	public Recipe(){}
-	
-	public Recipe(Invoice input, Invoice output) {
-		InputInvoice = input;
-		OutputInvoice = output;
-	}
-	
-	public void setInput(Element e, float amount) {
-		InputInvoice.setVal(e, amount);
-	}
-	
-	public void setInput(Invoice input) {
-		InputInvoice = input;
-	}
-	
-	public void setOutput(Invoice output) {
-		OutputInvoice = output;
-	}
-	
-	public void setOutput(Element e, float amount) {
-		OutputInvoice.setVal(e, amount);
-	}
-	
-	public Invoice getInput() {
-		return InputInvoice;
-	}
-	
-	public Invoice getOutput() {
-		return OutputInvoice;
-	}
 	
 }
