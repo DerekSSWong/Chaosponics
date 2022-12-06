@@ -108,8 +108,12 @@ public class Plant : SerializedMonoBehaviour
 		
 	}
 	
-	void makeInvoices() {
-		
+	Invoice toInvoice(List<Ingredient> list) {
+		Invoice outInvoice = new Invoice();
+		foreach (Ingredient i in list) {
+			outInvoice.setVal(i.element, i.rate);
+		}
+		return outInvoice;
 	}
 	
 	public Nutrient exchange(Nutrient soilN) {
