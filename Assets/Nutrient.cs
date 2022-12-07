@@ -87,6 +87,20 @@ public class Nutrient : IEnumerable<Element>
 		return portion;
 	}
 	
+	public float getSaltWeight() {
+		float salt = Mathf.Min(nutrient[Salt][0], 1f);
+		float brimstone = Mathf.Min(nutrient[Brimstone][0], 1f);
+		float weighted = salt * (salt / (salt + brimstone));
+		return weighted;
+	}
+	
+	public float getBrimstoneWeight() {
+		float brimstone = Mathf.Min(nutrient[Brimstone][0], 1f);
+		float salt = Mathf.Min(nutrient[Salt][0], 1f);
+		float weighted = brimstone * (brimstone / (salt + brimstone));
+		return weighted;
+	}
+	
 	public IEnumerator<Element> GetEnumerator() {
 		foreach(Element e in Element.GetValues(typeof(Element))) {
 			yield return e;
@@ -95,28 +109,5 @@ public class Nutrient : IEnumerable<Element>
 	
 	IEnumerator IEnumerable.GetEnumerator() {
 		return GetEnumerator();
-	}
-}
-
-public class NutrientRates : Nutrient {
-	
-	public void setRates(Element e, float[] n) {
-		nutrient[e] = n;
-	}
-	
-	public float getIntake(Element e) {
-		return nutrient[e][0];
-	}
-	
-	public void setIntake(Element e, float val) {
-		nutrient[e][0] = val;
-	}
-	
-	public float getCost(Element e) {
-		return nutrient[e][1];
-	}
-	
-	public void setCost(Element e, float val) {
-		nutrient[e][1] = val;
 	}
 }

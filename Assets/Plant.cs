@@ -69,7 +69,10 @@ public class Plant : SerializedMonoBehaviour
 		public float capacity;
 	}
 	
-	
+	protected Nutrient Nutrient;
+	protected Invoice PrimeInvoice;
+	protected Invoice AgentInvoice;
+	protected Invoice CatalystInvoice;
 	
 	void Start()
 	{	
@@ -100,6 +103,8 @@ public class Plant : SerializedMonoBehaviour
 		DeltaInvoice = new Invoice();
 		IntakeInvoice = new Invoice();
 		IdleInvoice = new Invoice();
+		
+		compileInput();
 	}
 
 	// Update is called once per frame
@@ -116,17 +121,93 @@ public class Plant : SerializedMonoBehaviour
 		return outInvoice;
 	}
 	
+	//Not right
+	Nutrient setNCap(Nutrient n, List<Ingredient> list) {
+		Nutrient outNutrient = n;
+		foreach (Ingredient i in list) {
+			outNutrient.setCap(i.element, outNutrient.getCap(i.element) + i.capacity);
+		}
+		return outNutrient;
+	}
+	
+	void compileInput() {
+		
+		PrimeInvoice = new Invoice();
+		PrimeInvoice = toInvoice(Prime);
+		
+		AgentInvoice = new Invoice();
+		AgentInvoice = toInvoice(Agent);
+		
+		CatalystInvoice = new Invoice();
+		CatalystInvoice = toInvoice(Catalyst);
+		
+		Nutrient = new Nutrient();
+		Nutrient = setNCap(Nutrient, Prime);
+		Nutrient = setNCap(Nutrient, Agent);
+		Nutrient = setNCap(Nutrient, Catalyst);
+		
+	}
+	
+	//Salt -> Suck more -> Purer but slower
+	//Brimstone -> Use more -> Less pure but faster
+	//Heat -> Custom effect
+	
+	
+	
+	public virtual Invoice generatePrimeIntake(Nutrient soilN) {
+		Invoice intake = PrimeInvoice;
+		
+		return intake;
+	}
+	
+	public virtual Invoice generateAgentIntake(Nutrient soilN) {
+		Invoice intake = AgentInvoice;
+		
+		return intake;
+	}
+	
+	public virtual Invoice generateCatalystIntake(Nutrient soilN) {
+		Invoice intake = CatalystInvoice;
+		
+		return intake;
+	}
+	
+	protected Invoice clamp(Invoice invoice, Nutrient nutrient) {
+		foreach(Element e in invoice) {
+			float invoiceVal = invoice.getVal(e);
+			float nutrientVal = nutrient.getCap(e) - nutrient.getVal(e);
+			invoice.setVal(e, Mathf.Min(invoiceVal, nutrientVal));
+		}
+		return invoice;
+	}
+	
+	public virtual Invoice generatePrimeCost(Nutrient soilN) {
+		Invoice cost = PrimeInvoice;
+		
+		return cost;
+	}
+	
+	public virtual Invoice generateAgentCost(Nutrient soilN) {
+		Invoice cost = AgentInvoice;
+		
+		return cost;
+	}
+	
+	public virtual Invoice generateCatalystCost(Nutrient soilN) {
+		Invoice cost = CatalystInvoice;
+		
+		return cost;
+	}
+	
 	public Nutrient exchange(Nutrient soilN) {
 		
 		Nutrient newSoilN = soilN;
-		
-		
 		
 		SigmaInvoice = new Invoice();
 		DeltaInvoice = new Invoice();
 		
 		//Generate initial invoice
-		IntakeInvoice = calcIntake(newSoilN); //IntakeInvoice = Brain.calcIntake(InternalNutrient, soilN);
+		IntakeInvoice = calcIntake(newSoilN);
 		//Submit invoice, updated to actual values taken from soil
 		IntakeInvoice = newSoilN.withdraw(IntakeInvoice);
 		//Deposits final value to internal nutrient
@@ -134,7 +215,7 @@ public class Plant : SerializedMonoBehaviour
 		DeltaInvoice.add(IntakeInvoice);
 		
 		//Idle cost
-		IdleInvoice = calcIdle(newSoilN); //IdleInvoice = Brain.calcIdle(InternalNutrient, soilN)
+		IdleInvoice = calcIdle(newSoilN);
 		IdleInvoice = internalNutrient.withdraw(IdleInvoice);
 		SigmaInvoice.add(IdleInvoice);
 		
@@ -159,6 +240,9 @@ public class Plant : SerializedMonoBehaviour
 		//Return invoice
 		
 		//Refine cost
+		
+		
+		
 		
 		
 		return newSoilN;
@@ -192,6 +276,19 @@ public class Plant : SerializedMonoBehaviour
 	
 	public void kill() {
 		Destroy(gameObject);
+	}
+	
+	public static bool roll(float p) {
+		bool outcome = false;
+		while (p > 1f) {
+			p /= 100f;
+		}
+		float r = UnityEngine.Random.Range(0f, 1f);
+		Debug.Log(r);
+		if (r <= p && p != 0f) {
+			outcome = true;
+		}
+		return outcome;
 	}
 	
 	public float getMaxVit() {return maxVit;}
