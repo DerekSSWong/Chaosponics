@@ -506,7 +506,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
   m_PrefabInstance: {fileID: 247381953}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312855371}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b4b0a5032a97ad4fb04cf65ef859e1a, type: 3}
@@ -530,31 +530,62 @@ PrefabInstance:
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: testBrain
       value: 
-      objectReference: {fileID: 1312855376}
+      objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: ProducesFruit
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Agent.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Prime.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Catalyst.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Agent.Array.data[0].rate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Prime.Array.data[0].rate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
+      propertyPath: Catalyst.Array.data[0].rate
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"braintype","value":{"$id":0,"$type":"System.RuntimeType, mscorlib","FernipBrain,
-        Assembly-CSharp"}'
+      propertyPath: Agent.Array.data[0].capacity
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      propertyPath: Prime.Array.data[0].capacity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Catalyst.Array.data[0].capacity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"Capacitors.{0es}","value":{"$id":0,"$type":"Plant+Capacitor,
         Assembly-CSharp","Capacity":100,"ChargeRate":5,"DischargeRate":1}'
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
       value: '"path":"Capacitors.{0es}.DischargeRate","value":{"$id":0,"$type":"System.Single,
         mscorlib",1}'
       objectReference: {fileID: 0}
@@ -1688,7 +1719,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8127
 --- !u!114 &1103061279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,23 +1913,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1312855371 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2656494000318259098, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
-  m_PrefabInstance: {fileID: 247381953}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1312855376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312855371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a48bd0c56a576c4bbd664818d2ad9a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1342074022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,6 +2507,12 @@ MonoBehaviour:
   - element: 2
     current: 0
     capacity: 1000
+  - element: 8
+    current: 30
+    capacity: 100
+  - element: 9
+    current: 20
+    capacity: 100
 --- !u!61 &1676270480
 BoxCollider2D:
   m_ObjectHideFlags: 0
