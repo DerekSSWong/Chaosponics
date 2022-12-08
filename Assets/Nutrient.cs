@@ -88,15 +88,15 @@ public class Nutrient : IEnumerable<Element>
 	}
 	
 	public float getSaltWeight() {
-		float salt = Mathf.Min(nutrient[Salt][0], 1f);
-		float brimstone = Mathf.Min(nutrient[Brimstone][0], 1f);
+		float salt = Mathf.Max(nutrient[Salt][0], 1f);
+		float brimstone = Mathf.Max(nutrient[Brimstone][0], 1f);
 		float weighted = salt * (salt / (salt + brimstone));
 		return weighted;
 	}
 	
 	public float getBrimstoneWeight() {
-		float brimstone = Mathf.Min(nutrient[Brimstone][0], 1f);
-		float salt = Mathf.Min(nutrient[Salt][0], 1f);
+		float brimstone = Mathf.Max(nutrient[Brimstone][0], 1f);
+		float salt = Mathf.Max(nutrient[Salt][0], 1f);
 		float weighted = brimstone * (brimstone / (salt + brimstone));
 		return weighted;
 	}

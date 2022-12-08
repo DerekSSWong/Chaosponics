@@ -593,6 +593,10 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2656494000318259098, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: m_Name
       value: Fernip

@@ -74,6 +74,8 @@ public class Plant : SerializedMonoBehaviour
 	protected Invoice AgentInvoice;
 	protected Invoice CatalystInvoice;
 	
+	protected GameObject Fruit;
+	
 	void Start()
 	{	
 		currVit = maxVit;
@@ -199,6 +201,12 @@ public class Plant : SerializedMonoBehaviour
 		return cost;
 	}
 	
+	public virtual Invoice grabIngredients(Nutrient soilN) {
+		Invoice ingredients = new Invoice();
+		
+		return ingredients;
+	}
+	
 	public Nutrient exchange(Nutrient soilN) {
 		
 		Nutrient newSoilN = soilN;
@@ -235,15 +243,13 @@ public class Plant : SerializedMonoBehaviour
 			}
 			
 		}
-		//Ask for invoice
-		//Withdraw from internal nutrient
-		//Return invoice
 		
-		//Refine cost
+		Invoice TotalIntake = new Invoice();
+		TotalIntake.add(generatePrimeIntake(soilN));
+		TotalIntake.add(generateAgentIntake(soilN));
+		TotalIntake.add(generateCatalystIntake(soilN));
 		
-		
-		
-		
+		TotalIntake = clamp(TotalIntake, Nutrient);
 		
 		return newSoilN;
 	}
