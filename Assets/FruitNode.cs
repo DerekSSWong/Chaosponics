@@ -140,6 +140,11 @@ public class FruitNode : MonoBehaviour
 		return total;
 	}
 	
+	//Measures how much is given
+	public virtual void measure(Invoice ingredients) {
+		
+	}
+	
 	public void spawnFruit(float p) {
 		foreach (Element e in FruitInvoice) {
 			if (SigmaInvoice.getVal(e) >= FruitInvoice.getVal(e) && e != Chaos && FruitInvoice.getVal(e) != 0) {

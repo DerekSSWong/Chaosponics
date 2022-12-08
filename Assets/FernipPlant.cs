@@ -23,12 +23,12 @@ public class FernipPlant : Plant
 		return cost;
 	}
 	
-	public override Invoice grabIngredients(Nutrient soilN)
+	public override void relayIngredients(Nutrient soilN)
 	{	
 		FruitNode fruitNode = this.GetComponent<FruitNode>();
 		Invoice ingredients = fruitNode.getTotalInvoice();
 		ingredients.mult(soilN.getSaltWeight());
 		
-		return ingredients;
+		fruitNode.receive(ingredients);
 	}
 }

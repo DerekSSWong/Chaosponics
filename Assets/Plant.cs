@@ -201,10 +201,8 @@ public class Plant : SerializedMonoBehaviour
 		return cost;
 	}
 	
-	public virtual Invoice grabIngredients(Nutrient soilN) {
-		Invoice ingredients = new Invoice();
+	public virtual void relayIngredients(Nutrient soilN) {
 		
-		return ingredients;
 	}
 	
 	public Nutrient exchange(Nutrient soilN) {
