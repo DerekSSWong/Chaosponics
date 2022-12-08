@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Agent.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Prime.Array.size
@@ -545,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Catalyst.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Agent.Array.data[0].rate
@@ -558,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Catalyst.Array.data[0].rate
       value: 3
