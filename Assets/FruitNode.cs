@@ -20,10 +20,15 @@ public class FruitNode : MonoBehaviour
 	float currPurity;
 	
 	protected Nutrient Nutrient;
+	
 	protected Invoice PrimeInvoice;
 	protected Invoice AgentInvoice;
 	protected Invoice CatalystInvoice;
+	
 	protected Invoice OutputInvoice;
+	protected float BasePurity;
+	protected float MaxPurity;
+	protected float Purity;
 	
 	[TableList]
 	public List<Ingredient>  Prime = new List<Ingredient>();
@@ -117,7 +122,9 @@ public class FruitNode : MonoBehaviour
 	//Output of fruit depends on total agent avaiable
 	
 	public virtual void receive(Invoice ingredients) {
+		measureIntake(ingredients);
 		Nutrient.deposit(ingredients);
+		develop();
 	}
 	
 	public virtual Invoice getPrimeInvoice() {
@@ -136,12 +143,36 @@ public class FruitNode : MonoBehaviour
 		Invoice total = PrimeInvoice;
 		total.add(AgentInvoice);
 		total.add(CatalystInvoice);
-		
+		total = Plant.clamp(total, Nutrient);
 		return total;
 	}
 	
 	//Measures how much is given
-	public virtual void measure(Invoice ingredients) {
+	public virtual void measureIntake(Invoice ingredients) {
+		foreach (Element e in PrimeInvoice) {
+			float ingVal = ingredients.getVal(e);
+			float primeVal = PrimeInvoice.getVal(e);
+			if (ingVal < primeVal) {
+				Purity *= 0.95f;
+			}
+		}
+	}
+	
+	public virtual void develop() {
+		bool spawnable = true;
+		foreach (Element e in PrimeInvoice) {
+			float curr = Nutrient.getVal(e);
+			float cap = Nutrient.getCap(e);
+			if (curr < cap) {
+				spawnable = false;
+			}
+		}
+		if (spawnable) {
+			crystallise();
+		}
+	}
+	
+	public virtual void crystallise() {
 		
 	}
 	

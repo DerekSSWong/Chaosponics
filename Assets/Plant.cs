@@ -174,7 +174,7 @@ public class Plant : SerializedMonoBehaviour
 		return intake;
 	}
 	
-	protected Invoice clamp(Invoice invoice, Nutrient nutrient) {
+	public static Invoice clamp(Invoice invoice, Nutrient nutrient) {
 		foreach(Element e in invoice) {
 			float invoiceVal = invoice.getVal(e);
 			float nutrientVal = nutrient.getCap(e) - nutrient.getVal(e);
@@ -201,8 +201,8 @@ public class Plant : SerializedMonoBehaviour
 		return cost;
 	}
 	
-	public virtual void relayIngredients(Nutrient soilN) {
-		
+	public virtual Nutrient relayToNode(Nutrient soilN) {
+		return soilN;
 	}
 	
 	public Nutrient exchange(Nutrient soilN) {
