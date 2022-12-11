@@ -51,6 +51,10 @@ public class Fruit : MonoBehaviour
 	
 	[SerializeField] float internalChaos;
 	
+	
+	Nutrient Nutrient;
+	float Purity;
+	
 	// Start is called before the first frame update
     void Start()
 	{	

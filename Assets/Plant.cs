@@ -46,6 +46,7 @@ public class Plant : SerializedMonoBehaviour
 		public float DischargeRate;
 	}
 	
+	//Where the real fun begins
 	[DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.Foldout)]
 	public Dictionary<Element, Capacitor> Capacitors = new Dictionary<Element, Capacitor>();
 	
@@ -75,6 +76,7 @@ public class Plant : SerializedMonoBehaviour
 	protected Invoice CatalystInvoice;
 	
 	protected GameObject Fruit;
+	[SerializeField] protected float FruitGrowChancePerTick;
 	
 	void Start()
 	{	

@@ -25,13 +25,14 @@ public class FernipPlant : Plant
 	
 	public override Nutrient relayToNode(Nutrient soilN)
 	{	
-		FruitNode fruitNode = this.GetComponent<FruitNode>();
-		Invoice ingredients = fruitNode.getTotalInvoice();
-		ingredients.mult(soilN.getSaltWeight());
+		if (roll(FruitGrowChancePerTick)) {
+			FruitNode fruitNode = this.GetComponent<FruitNode>();
+			Invoice ingredients = fruitNode.getTotalInvoice();
+			ingredients.mult(soilN.getSaltWeight());
 		
-		ingredients = soilN.withdraw(ingredients);
-		fruitNode.receive(ingredients);
-		
+			ingredients = soilN.withdraw(ingredients);
+			fruitNode.receive(ingredients);
+		}
 		return soilN;
 	}
 }

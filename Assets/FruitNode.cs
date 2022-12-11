@@ -153,9 +153,13 @@ public class FruitNode : MonoBehaviour
 			float ingVal = ingredients.getVal(e);
 			float primeVal = PrimeInvoice.getVal(e);
 			if (ingVal < primeVal) {
-				Purity *= 0.95f;
+				purityNotMet();
 			}
 		}
+	}
+	
+	public virtual void purityNotMet() {
+		Purity *= 0.95f;
 	}
 	
 	public virtual void develop() {
@@ -174,6 +178,40 @@ public class FruitNode : MonoBehaviour
 	
 	public virtual void crystallise() {
 		
+	}
+	
+	public void spawnFruit(Nutrient n, float p) {
+		
+	}
+	
+	/// <summary>
+	/// Averages the total concentration of Agents. 0 means no agents are present, 1 means all conditions are met
+	/// Good to determin purity, not for determining yield of individual output elements
+	/// </summary>
+	/// <returns>Average agent concentration</returns>
+	public float getAgentConcentration() {
+		List<float> portions = new List<float>();
+		foreach (Element e in AgentInvoice) {
+			float val = Nutrient.getVal(e);
+			float cap = Nutrient.getCap(e);
+			if (cap > 0) {
+				float portion = val/cap;
+				portions.Add(portion);
+			}
+		}
+		
+		float sum = 0f;
+		foreach (float i in portions) {
+			sum += i;
+		}
+		float average = sum/portions.Count;
+		
+		return average;
+	}
+	
+	public float sigmoidConcentration(float concentration) {
+		float output = 1f / ( 1f + Mathf.Exp( -10f * concentration + 5f));
+		return output;
 	}
 	
 	public void spawnFruit(float p) {
