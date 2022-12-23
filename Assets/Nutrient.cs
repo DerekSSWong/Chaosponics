@@ -15,6 +15,12 @@ public class Nutrient : IEnumerable<Element>
 		
 	}
 	
+	public Nutrient(Invoice invoice) {
+		foreach (Element e in invoice) {
+			nutrient.Add(e, new float[] {invoice.getVal(e), invoice.getVal(e)});
+		}
+	}
+	
 	public void setNutrient(Element e, float[] n) {
 		nutrient[e] = n;
 	}

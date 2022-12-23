@@ -181,7 +181,7 @@ public class FruitNode : MonoBehaviour
 	}
 	
 	public void spawnFruit(Nutrient n, float p) {
-		
+		//fruitObj.GetComponent<Fruit>().spawn();
 	}
 	
 	/// <summary>

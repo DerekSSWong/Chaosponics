@@ -51,7 +51,6 @@ public class Fruit : MonoBehaviour
 	
 	[SerializeField] float internalChaos;
 	
-	
 	Nutrient Nutrient;
 	float Purity;
 	
@@ -122,6 +121,12 @@ public class Fruit : MonoBehaviour
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(this.transform.position, DetectorRange);
+	}
+	
+	public void spawn(Nutrient n, float p, Transform loc) {
+		Nutrient = n;
+		Purity = p;
+		Instantiate(gameObject, loc.position, Quaternion.identity);
 	}
     
 	public Nutrient exchange(Nutrient soilN) {
