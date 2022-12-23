@@ -12,6 +12,9 @@ public class FernipNode : FruitNode
 		float purityBuff = sigmoidConcentration(concentration);
 		Purity += BasePurity*purityBuff;
 		Purity = Mathf.Max(Purity, MaxPurity);
+		
+		Nutrient OutputNutrient = new Nutrient(OutputInvoice);
+		spawnFruit(OutputNutrient, Purity);
 	}
 		
 }

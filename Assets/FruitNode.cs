@@ -9,7 +9,7 @@ using static Elements;
 public class FruitNode : MonoBehaviour
 {	
 	[SerializeField] GameObject fruitObj;
-	[SerializeField] GameObject spawnNode;
+	[SerializeField] protected GameObject spawnNode;
 	Fruit fruit;
 	Nutrient FruitNutrient;
 
@@ -181,7 +181,7 @@ public class FruitNode : MonoBehaviour
 	}
 	
 	public void spawnFruit(Nutrient n, float p) {
-		//fruitObj.GetComponent<Fruit>().spawn();
+		fruitObj.GetComponent<Fruit>().spawn(n, p, spawnNode.transform);
 	}
 	
 	/// <summary>
