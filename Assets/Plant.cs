@@ -29,8 +29,6 @@ public class Plant : SerializedMonoBehaviour
 	Invoice IdleInvoice;
 	Invoice CultivateInvoice;
 	
-	Brain Brain;
-	
 	FruitNode fruitNode;
 	bool hasFruitNode;
 	
@@ -99,8 +97,6 @@ public class Plant : SerializedMonoBehaviour
 		baseChaosIn = Capacitors[Chaos].ChargeRate;
 		baseChaosCost = Capacitors[Chaos].DischargeRate;
 		currChaos = Capacitors[Chaos].DischargeRate;
-		
-		Brain = gameObject.GetComponent<Brain>();
 		
 		
 		SigmaInvoice = new Invoice();
@@ -203,6 +199,10 @@ public class Plant : SerializedMonoBehaviour
 		return cost;
 	}
 	
+	public virtual Nutrient consume(Nutrient nutrient) {
+		return nutrient;
+	}
+	
 	public virtual Nutrient relayToNode(Nutrient soilN) {
 		return soilN;
 	}
@@ -211,38 +211,37 @@ public class Plant : SerializedMonoBehaviour
 		
 		Nutrient newSoilN = soilN;
 		
-		SigmaInvoice = new Invoice();
-		DeltaInvoice = new Invoice();
+		//SigmaInvoice = new Invoice();
+		//DeltaInvoice = new Invoice();
 		
-		//Generate initial invoice
-		IntakeInvoice = calcIntake(newSoilN);
-		//Submit invoice, updated to actual values taken from soil
-		IntakeInvoice = newSoilN.withdraw(IntakeInvoice);
-		//Deposits final value to internal nutrient
-		internalNutrient.deposit(IntakeInvoice);
-		DeltaInvoice.add(IntakeInvoice);
+		////Generate initial invoice
+		//IntakeInvoice = calcIntake(newSoilN);
+		////Submit invoice, updated to actual values taken from soil
+		//IntakeInvoice = newSoilN.withdraw(IntakeInvoice);
+		////Deposits final value to internal nutrient
+		//internalNutrient.deposit(IntakeInvoice);
+		//DeltaInvoice.add(IntakeInvoice);
 		
 		//Idle cost
-		IdleInvoice = calcIdle(newSoilN);
-		IdleInvoice = internalNutrient.withdraw(IdleInvoice);
-		SigmaInvoice.add(IdleInvoice);
+		//IdleInvoice = calcIdle(newSoilN);
+		//IdleInvoice = internalNutrient.withdraw(IdleInvoice);
+		//SigmaInvoice.add(IdleInvoice);
 		
-		if (IdleInvoice.isFlagged()){
-			currVit -= 1;
-		} else if (currVit < maxVit) {
-			currVit += 1;
-		}
+		//if (IdleInvoice.isFlagged()){
+		//	currVit -= 1;
+		//} else if (currVit < maxVit) {
+		//	currVit += 1;
+		//}
 		
 		//Cultivate cost
-		if (hasFruitNode) {            //Brain.calcFruitDemand();
-			if (FruitNode.roll()) {
-				Invoice fruitInvoice = FruitNode.getDemand();
-				CultivateInvoice = internalNutrient.withdraw(fruitInvoice);
-				FruitNode.supply(CultivateInvoice);
-				SigmaInvoice.add(CultivateInvoice);
-			}
-			
-		}
+		//if (hasFruitNode) {
+		//	if (FruitNode.roll()) {
+		//		Invoice fruitInvoice = FruitNode.getDemand();
+		//		CultivateInvoice = internalNutrient.withdraw(fruitInvoice);
+		//		FruitNode.supply(CultivateInvoice);
+		//		SigmaInvoice.add(CultivateInvoice);
+		//	}
+		//}
 		
 		Invoice TotalIntake = new Invoice();
 		TotalIntake.add(generatePrimeIntake(soilN));
@@ -251,34 +250,40 @@ public class Plant : SerializedMonoBehaviour
 		
 		TotalIntake = clamp(TotalIntake, Nutrient);
 		
+		Invoice TotalIntook = newSoilN.withdraw(TotalIntake);
+		Nutrient.deposit(TotalIntook);
+		
+		Nutrient = consume(Nutrient);
+		Nutrient = relayToNode(Nutrient);
+		
 		return newSoilN;
 	}
 	
-	private Invoice calcIntake(Nutrient newSoilN) {
-		Invoice intake = new Invoice();
+	//private Invoice calcIntake(Nutrient newSoilN) {
+	//	Invoice intake = new Invoice();
 		
-		foreach (var item in Capacitors) {
-			Element e = item.Key;
-			float intakeVal = item.Value.ChargeRate;
-			float diff = internalNutrient.getCap(e) - internalNutrient.getVal(e);
-			intakeVal = Mathf.Min(intakeVal, diff);
-			intake.setVal(e, intakeVal);
-		}
-		return intake;
-	}
+	//	foreach (var item in Capacitors) {
+	//		Element e = item.Key;
+	//		float intakeVal = item.Value.ChargeRate;
+	//		float diff = internalNutrient.getCap(e) - internalNutrient.getVal(e);
+	//		intakeVal = Mathf.Min(intakeVal, diff);
+	//		intake.setVal(e, intakeVal);
+	//	}
+	//	return intake;
+	//}
 	
-	private Invoice calcIdle(Nutrient newSoilN) {
-		Invoice idle = new Invoice();
+	//private Invoice calcIdle(Nutrient newSoilN) {
+	//	Invoice idle = new Invoice();
 		
-		foreach (var item in Capacitors) {
-			Element e = item.Key;
-			float idleVal = item.Value.DischargeRate;
+	//	foreach (var item in Capacitors) {
+	//		Element e = item.Key;
+	//		float idleVal = item.Value.DischargeRate;
 			
-			idle.setVal(e, idleVal);
-		}
+	//		idle.setVal(e, idleVal);
+	//	}
 		
-		return idle;
-	}
+	//	return idle;
+	//}
 	
 	public void kill() {
 		Destroy(gameObject);

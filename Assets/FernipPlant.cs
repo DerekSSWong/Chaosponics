@@ -23,14 +23,33 @@ public class FernipPlant : Plant
 		return cost;
 	}
 	
+	public override Invoice generateAgentIntake(Nutrient soilN) {
+		FruitNode fruitNode = this.GetComponent<FruitNode>();
+		Invoice ingredients = fruitNode.getTotalInvoice();
+		return ingredients;
+	}
+	
+	public override Invoice generateAgentCost(Nutrient soilN) {
+		FruitNode fruitNode = this.GetComponent<FruitNode>();
+		Invoice ingredients = fruitNode.getTotalInvoice();
+		return ingredients;
+	}
+	
+	public override Nutrient consume(Nutrient soilN) {
+		
+		Nutrient newNutrient = Nutrient;
+		Invoice invoice = newNutrient.withdraw(generatePrimeCost(soilN));
+		if (invoice.isFlagged()) {
+			//Take damage here
+		}
+		
+		return newNutrient;
+	}
 	public override Nutrient relayToNode(Nutrient soilN)
 	{	
 		if (roll(FruitGrowChancePerTick)) {
 			FruitNode fruitNode = this.GetComponent<FruitNode>();
-			Invoice ingredients = fruitNode.getTotalInvoice();
-			ingredients.mult(soilN.getSaltWeight());
-		
-			ingredients = soilN.withdraw(ingredients);
+			Invoice ingredients = generateAgentCost(soilN);
 			fruitNode.receive(ingredients);
 		}
 		return soilN;
