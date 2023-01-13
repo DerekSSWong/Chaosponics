@@ -76,26 +76,26 @@ public class Plant : SerializedMonoBehaviour
 	void Start()
 	{	
 		currVit = maxVit;
-		currChaos = baseChaosIn;
+		//currChaos = baseChaosIn;
 		
-		//Loads capacity data into nutrients
-		foreach (var item in Capacitors) {
-			internalNutrient.setNutrient(item.Key, new float[] {item.Value.ChargeRate, item.Value.Capacity});
-			//currentRates.setRates(item.Key, new float[] {item.Value.ChargeRate, item.Value.DischargeRate});
-			//Debug.Log(internalNutrient.getVal(index.Key) + " , " + internalNutrient.getCap(index.Key));
-		}
-		
-		
-		maxChaos = Capacitors[Chaos].Capacity;
-		baseChaosIn = Capacitors[Chaos].ChargeRate;
-		baseChaosCost = Capacitors[Chaos].DischargeRate;
-		currChaos = Capacitors[Chaos].DischargeRate;
+		////Loads capacity data into nutrients
+		//foreach (var item in Capacitors) {
+		//	internalNutrient.setNutrient(item.Key, new float[] {item.Value.ChargeRate, item.Value.Capacity});
+		//	//currentRates.setRates(item.Key, new float[] {item.Value.ChargeRate, item.Value.DischargeRate});
+		//	//Debug.Log(internalNutrient.getVal(index.Key) + " , " + internalNutrient.getCap(index.Key));
+		//}
 		
 		
-		SigmaInvoice = new Invoice();
-		DeltaInvoice = new Invoice();
-		IntakeInvoice = new Invoice();
-		IdleInvoice = new Invoice();
+		//maxChaos = Capacitors[Chaos].Capacity;
+		//baseChaosIn = Capacitors[Chaos].ChargeRate;
+		//baseChaosCost = Capacitors[Chaos].DischargeRate;
+		//currChaos = Capacitors[Chaos].DischargeRate;
+		
+		
+		//SigmaInvoice = new Invoice();
+		//DeltaInvoice = new Invoice();
+		//IntakeInvoice = new Invoice();
+		//IdleInvoice = new Invoice();
 		
 		compileInput();
 	}
@@ -145,11 +145,12 @@ public class Plant : SerializedMonoBehaviour
 	//Brimstone -> Use more -> Less pure but faster
 	//Heat -> Custom effect
 	
-	
+	public virtual void InheritanceTest(){
+		Debug.Log("Not working");
+	}
 	
 	public virtual Invoice generatePrimeIntake(Nutrient soilN) {
 		Invoice intake = PrimeInvoice;
-		
 		return intake;
 	}
 	
@@ -203,6 +204,7 @@ public class Plant : SerializedMonoBehaviour
 	public Nutrient exchange(Nutrient soilN) {
 		
 		Nutrient newSoilN = soilN;
+		InheritanceTest();
 		
 		//SigmaInvoice = new Invoice();
 		//DeltaInvoice = new Invoice();
@@ -244,9 +246,10 @@ public class Plant : SerializedMonoBehaviour
 		TotalIntake = clamp(TotalIntake, Nutrient);
 		
 		Invoice TotalIntook = newSoilN.withdraw(TotalIntake);
+		//Debug.Log("Chaos taken: " + TotalIntook.getVal(Chaos));
 		Nutrient.deposit(TotalIntook);
 		
-		Nutrient = consume(Nutrient);
+		Nutrient = consume(soilN);
 		Nutrient = relayToNode(Nutrient);
 		
 		return newSoilN;

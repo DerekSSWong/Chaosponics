@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Elements;
 
 public class FernipPlant : Plant
 {	
@@ -9,10 +10,16 @@ public class FernipPlant : Plant
 	//Agent -> Ask fruit node
 	//Catalyst -> Ask fruit node
 	
+	public override void InheritanceTest()
+	{
+		Debug.Log("Working");
+	}
+	
 	public override Invoice generatePrimeIntake(Nutrient soilN)
 	{
 		Invoice intake = PrimeInvoice;
 		intake.mult(soilN.getSaltWeight());
+		Debug.Log("inheritance working");
 		return intake;
 	}
 	
@@ -38,7 +45,9 @@ public class FernipPlant : Plant
 	public override Nutrient consume(Nutrient soilN) {
 		
 		Nutrient newNutrient = Nutrient;
+		Debug.Log("Original Value: " + newNutrient.getVal(Chaos));
 		Invoice invoice = newNutrient.withdraw(generatePrimeCost(soilN));
+		Debug.Log("Chaos taken: " + invoice.getVal(Chaos) + " Current Value: " + newNutrient.getVal(Chaos));
 		if (invoice.isFlagged()) {
 			//Take damage here
 		}

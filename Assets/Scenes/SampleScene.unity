@@ -260,6 +260,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13767327}
   m_CullTransparentMesh: 1
+--- !u!1 &100816281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2656494000318259098, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+  m_PrefabInstance: {fileID: 247381953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199979458
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,17 +506,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201245806}
   m_CullTransparentMesh: 1
---- !u!114 &237005567 stripped
+--- !u!114 &237005572
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
-  m_PrefabInstance: {fileID: 247381953}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 100816281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4b0a5032a97ad4fb04cf65ef859e1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 91c1325702728734493b70007849bb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitObj: {fileID: 6021366174759189508, guid: 01a7f416329c51346a54049490567a6f, type: 3}
+  spawnNode: {fileID: 1183351842}
+  Prime:
+  - element: 0
+    rate: 1
+    capacity: 10
+  Agent: []
+  Catalyst: []
+  Output: []
+--- !u!114 &237005573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100816281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60d035e94a653041bf1460b2def9ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Capacitors
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Elements+Element, Assembly-CSharp],[Plant+Capacitor,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Elements+Element,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  maxVit: 100
+  ProducesFruit: 1
+  FruitNode: {fileID: 237005572}
+  Prime:
+  - element: 0
+    rate: 10
+    capacity: 100
+  Agent: []
+  Catalyst: []
+  FruitGrowChancePerTick: 1
 --- !u!1001 &247381953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,11 +594,15 @@ PrefabInstance:
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Fruit
       value: 
-      objectReference: {fileID: 237005567}
+      objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: FruitNode
       value: 
-      objectReference: {fileID: 237005567}
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: testBrain
       value: 
@@ -548,12 +624,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: FruitGrowChancePerTick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Agent.Array.data[0].rate
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Prime.Array.data[0].rate
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: serializationData.Prefab
@@ -569,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Prime.Array.data[0].capacity
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: Catalyst.Array.data[0].capacity
@@ -595,7 +675,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Prime.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Prime.Array.data[0].rate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+      propertyPath: Prime.Array.data[0].capacity
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2656494000318259098, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
       propertyPath: m_Name
@@ -645,7 +737,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 311837470, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+    - {fileID: 311837471, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
 --- !u!1 &335970819
 GameObject:
@@ -1790,6 +1884,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1183351842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1428475896952320992, guid: 83cb72268620cb44fbcc5c883c8edfc8, type: 3}
+  m_PrefabInstance: {fileID: 247381953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192097165
 GameObject:
   m_ObjectHideFlags: 0
