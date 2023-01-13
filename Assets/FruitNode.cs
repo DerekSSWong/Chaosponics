@@ -164,7 +164,7 @@ public class FruitNode : MonoBehaviour
 	
 	public virtual void develop() {
 		bool spawnable = true;
-		foreach (Element e in PrimeInvoice) {
+		foreach (Element e in Nutrient) {
 			float curr = Nutrient.getVal(e);
 			float cap = Nutrient.getCap(e);
 			if (curr < cap) {

@@ -49,7 +49,7 @@ public class FernipPlant : Plant
 	{	
 		if (roll(FruitGrowChancePerTick)) {
 			FruitNode fruitNode = this.GetComponent<FruitNode>();
-			Invoice ingredients = generateAgentCost(soilN);
+			Invoice ingredients = generateAgentCost(soilN); //WIP
 			fruitNode.receive(ingredients);
 		}
 		return soilN;

@@ -29,12 +29,9 @@ public class Plant : SerializedMonoBehaviour
 	Invoice IdleInvoice;
 	Invoice CultivateInvoice;
 	
-	FruitNode fruitNode;
-	bool hasFruitNode;
-	
 	[SerializeField] bool ProducesFruit;
 	[EnableIf("ProducesFruit")]
-	[SerializeField] FruitNode FruitNode;
+	[SerializeField] protected FruitNode FruitNode;
 	
 	
 	public struct Capacitor {
@@ -80,10 +77,6 @@ public class Plant : SerializedMonoBehaviour
 	{	
 		currVit = maxVit;
 		currChaos = baseChaosIn;
-		
-		if (TryGetComponent<FruitNode>(out fruitNode)) {
-			hasFruitNode = true;
-		} else {hasFruitNode = false;}
 		
 		//Loads capacity data into nutrients
 		foreach (var item in Capacitors) {
@@ -317,9 +310,6 @@ public class Plant : SerializedMonoBehaviour
 	
 	public float getFruitProgress() {
 		float progress = 0;
-		if (hasFruitNode) {
-			progress = fruitNode.getProgress();
-		}
 		return progress;
 	}
 
