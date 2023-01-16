@@ -12,14 +12,14 @@ public class FernipPlant : Plant
 	
 	public override void InheritanceTest()
 	{
-		Debug.Log("Working");
+		Debug.Log("Inheritance Working");
 	}
 	
 	public override Invoice generatePrimeIntake(Nutrient soilN)
-	{
+	{	
+		Debug.Log("GeneratePrimeIntake Called");
 		Invoice intake = PrimeInvoice;
 		intake.mult(soilN.getSaltWeight());
-		Debug.Log("inheritance working");
 		return intake;
 	}
 	

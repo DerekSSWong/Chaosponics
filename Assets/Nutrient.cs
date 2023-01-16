@@ -95,9 +95,11 @@ public class Nutrient : IEnumerable<Element>
 	}
 	
 	public float getSaltWeight() {
+		Debug.Log("GetSaltWeight called");
 		float salt = Mathf.Max(nutrient[Salt][0], 1f);
 		float brimstone = Mathf.Max(nutrient[Brimstone][0], 1f);
 		float weighted = salt * (salt / (salt + brimstone));
+		Debug.Log("GetSaltWeight finished");
 		return weighted;
 	}
 	

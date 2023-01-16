@@ -240,8 +240,8 @@ public class Plant : SerializedMonoBehaviour
 		
 		Invoice TotalIntake = new Invoice();
 		TotalIntake.add(generatePrimeIntake(soilN));
-		TotalIntake.add(generateAgentIntake(soilN));
-		TotalIntake.add(generateCatalystIntake(soilN));
+		//TotalIntake.add(generateAgentIntake(soilN));
+		//TotalIntake.add(generateCatalystIntake(soilN));
 		
 		TotalIntake = clamp(TotalIntake, Nutrient);
 		
@@ -250,7 +250,7 @@ public class Plant : SerializedMonoBehaviour
 		Nutrient.deposit(TotalIntook);
 		
 		Nutrient = consume(soilN);
-		Nutrient = relayToNode(Nutrient);
+		//Nutrient = relayToNode(Nutrient);
 		
 		return newSoilN;
 	}
