@@ -114,11 +114,13 @@ public class Plant : SerializedMonoBehaviour
 		return outInvoice;
 	}
 	
-	//Not right
+	//Maybe right
 	Nutrient setNCap(Nutrient n, List<Ingredient> list) {
 		Nutrient outNutrient = n;
 		foreach (Ingredient i in list) {
-			outNutrient.setCap(i.element, outNutrient.getCap(i.element) + i.capacity);
+			float currentCap = n.getCap(i.element);
+			float newCap = currentCap + i.capacity;
+			outNutrient.setCap(i.element, newCap);
 		}
 		return outNutrient;
 	}
@@ -138,7 +140,7 @@ public class Plant : SerializedMonoBehaviour
 		Nutrient = setNCap(Nutrient, Prime);
 		Nutrient = setNCap(Nutrient, Agent);
 		Nutrient = setNCap(Nutrient, Catalyst);
-		
+		Debug.Log("Chaoso cap: " + Nutrient.getCap(Chaos));
 	}
 	
 	//Salt -> Suck more -> Purer but slower
@@ -244,6 +246,7 @@ public class Plant : SerializedMonoBehaviour
 		//TotalIntake.add(generateCatalystIntake(soilN));
 		
 		TotalIntake = clamp(TotalIntake, Nutrient);
+		Debug.Log("Total Chaos intake: " + TotalIntake.getVal(Chaos));
 		
 		Invoice TotalIntook = newSoilN.withdraw(TotalIntake);
 		//Debug.Log("Chaos taken: " + TotalIntook.getVal(Chaos));

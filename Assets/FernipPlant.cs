@@ -12,15 +12,16 @@ public class FernipPlant : Plant
 	
 	public override void InheritanceTest()
 	{
-		Debug.Log("Inheritance Working");
+		//Debug.Log("Inheritance Working");
 	}
 	
 	public override Invoice generatePrimeIntake(Nutrient soilN)
 	{	
-		Debug.Log("GeneratePrimeIntake Called");
+		//Debug.Log("GeneratePrimeIntake Called");
 		Invoice intake = PrimeInvoice;
-		//soilN.getSaltWeight();
+		Debug.Log("Chaos intake before salt: " + intake.getVal(Chaos));
 		intake.mult(soilN.getSaltWeight());
+		Debug.Log("Chaos intake after salt: " + intake.getVal(Chaos));
 		return intake;
 	}
 	
@@ -46,9 +47,9 @@ public class FernipPlant : Plant
 	public override Nutrient consume(Nutrient soilN) {
 		
 		Nutrient newNutrient = Nutrient;
-		Debug.Log("Original Value: " + newNutrient.getVal(Chaos));
+		//Debug.Log("Original Value: " + newNutrient.getVal(Chaos));
 		Invoice invoice = newNutrient.withdraw(generatePrimeCost(soilN));
-		Debug.Log("Chaos taken: " + invoice.getVal(Chaos) + " Current Value: " + newNutrient.getVal(Chaos));
+		//Debug.Log("Chaos taken: " + invoice.getVal(Chaos) + " Current Value: " + newNutrient.getVal(Chaos));
 		if (invoice.isFlagged()) {
 			//Take damage here
 		}
