@@ -55,8 +55,8 @@ public class Invoice : IEnumerable<Element>
 	}
 	
 	public void mult(float buff) {
-		foreach (var item in data) {
-			data[item.Key] *= buff;
+		foreach (Element val in Element.GetValues(typeof(Element))) {
+			data[val] *= buff;
 		}
 	}
 	

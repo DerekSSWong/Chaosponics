@@ -19,6 +19,7 @@ public class FernipPlant : Plant
 	{	
 		Debug.Log("GeneratePrimeIntake Called");
 		Invoice intake = PrimeInvoice;
+		//soilN.getSaltWeight();
 		intake.mult(soilN.getSaltWeight());
 		return intake;
 	}
