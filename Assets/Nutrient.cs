@@ -102,7 +102,7 @@ public class Nutrient : IEnumerable<Element>
 		float brimstone = Mathf.Max(nutrient[Brimstone][0], 1f);
 		float weighted = salt * (salt / (salt + brimstone));
 		//float weighted = 0.1f;
-		Debug.Log("Salt Weight = " + weighted);
+		//Debug.Log("Salt Weight = " + weighted);
 		return weighted;
 	}
 	

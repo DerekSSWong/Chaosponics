@@ -240,7 +240,6 @@ public class Plant : SerializedMonoBehaviour
 		
 		Invoice TotalIntake = new Invoice();
 		Invoice PrimeIntake = generatePrimeIntake(soilN);
-		Debug.Log("Chaos intake: " + PrimeInvoice.getVal(Chaos));
 		TotalIntake.add(PrimeInvoice);
 		//TotalIntake.add(generateAgentIntake(soilN));
 		//TotalIntake.add(generateCatalystIntake(soilN));

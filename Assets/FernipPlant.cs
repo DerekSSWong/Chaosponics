@@ -18,15 +18,13 @@ public class FernipPlant : Plant
 	public override Invoice generatePrimeIntake(Nutrient soilN)
 	{	
 		Invoice intake = new Invoice(PrimeInvoice);
-		intake.mult(2f);
-		Debug.Log("Intake: " + intake.getVal(Chaos) + "Prime: " + PrimeInvoice.getVal(Chaos));
-		//intake.mult(soilN.getSaltWeight());
+		intake.mult(soilN.getSaltWeight());
 		return intake;
 	}
 	
 	
 	public override Invoice generatePrimeCost(Nutrient soilN) {
-		Invoice cost = PrimeInvoice;
+		Invoice cost = new Invoice(PrimeInvoice);
 		//cost.mult(soilN.getBrimstoneWeight());
 		return cost;
 	}
