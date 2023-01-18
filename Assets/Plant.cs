@@ -126,7 +126,6 @@ public class Plant : SerializedMonoBehaviour
 	}
 	
 	void compileInput() {
-		
 		PrimeInvoice = new Invoice();
 		PrimeInvoice = toInvoice(Prime);
 		
@@ -140,7 +139,6 @@ public class Plant : SerializedMonoBehaviour
 		Nutrient = setNCap(Nutrient, Prime);
 		Nutrient = setNCap(Nutrient, Agent);
 		Nutrient = setNCap(Nutrient, Catalyst);
-		Debug.Log("Chaoso cap: " + Nutrient.getCap(Chaos));
 	}
 	
 	//Salt -> Suck more -> Purer but slower
@@ -241,18 +239,19 @@ public class Plant : SerializedMonoBehaviour
 		//}
 		
 		Invoice TotalIntake = new Invoice();
-		TotalIntake.add(generatePrimeIntake(soilN));
+		Invoice PrimeIntake = generatePrimeIntake(soilN);
+		Debug.Log("Chaos intake: " + PrimeInvoice.getVal(Chaos));
+		TotalIntake.add(PrimeInvoice);
 		//TotalIntake.add(generateAgentIntake(soilN));
 		//TotalIntake.add(generateCatalystIntake(soilN));
 		
 		TotalIntake = clamp(TotalIntake, Nutrient);
-		Debug.Log("Total Chaos intake: " + TotalIntake.getVal(Chaos));
 		
 		Invoice TotalIntook = newSoilN.withdraw(TotalIntake);
 		//Debug.Log("Chaos taken: " + TotalIntook.getVal(Chaos));
 		Nutrient.deposit(TotalIntook);
 		
-		Nutrient = consume(soilN);
+		//Nutrient = consume(soilN);
 		//Nutrient = relayToNode(Nutrient);
 		
 		return newSoilN;
