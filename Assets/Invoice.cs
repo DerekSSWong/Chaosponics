@@ -17,6 +17,14 @@ public class Invoice : IEnumerable<Element>
 		}
 	}
 	
+	public Invoice (Invoice invoice) {
+		flagged = false;
+		empty = invoice.isEmpty();
+		foreach (Element e in invoice) {
+			data.Add(e, invoice.getVal(e));
+		}
+	}
+	
 	public void setVal(Element e, float val) {
 		empty = false;
 		data[e] = val;
