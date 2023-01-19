@@ -140,7 +140,7 @@ public class FruitNode : MonoBehaviour
 	}
 	
 	public virtual Invoice getTotalInvoice() {
-		Invoice total = PrimeInvoice;
+		Invoice total = new Invoice(PrimeInvoice);
 		total.add(AgentInvoice);
 		total.add(CatalystInvoice);
 		total = Plant.clamp(total, Nutrient);
