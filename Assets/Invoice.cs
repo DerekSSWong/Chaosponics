@@ -4,11 +4,18 @@ using UnityEngine;
 using static Elements;
 
 public class Invoice : IEnumerable<Element>
-{
+{	
+	/// <summary>
+	/// Used to pass Element data back and forth Nutrient classes. Also used to store Element requirements for plants.
+	/// </summary>
 	protected Dictionary<Element, float> data = new Dictionary<Element, float>();
 	protected bool flagged;
 	bool empty;
 	
+	/// <summary>
+	/// Creates an empty invoice
+	/// </summary>
+	/// <returns></returns>
 	public Invoice() {
 		flagged = false;
 		empty = true;
@@ -17,6 +24,11 @@ public class Invoice : IEnumerable<Element>
 		}
 	}
 	
+	/// <summary>
+	/// Duplicates an invoice from an existing invoice
+	/// </summary>
+	/// <param name="invoice"></param>
+	/// <returns></returns>
 	public Invoice (Invoice invoice) {
 		flagged = false;
 		empty = invoice.isEmpty();
@@ -34,6 +46,10 @@ public class Invoice : IEnumerable<Element>
 		return data[e];
 	}
 	
+	
+	/// <summary>
+	/// If unable to completely withdraw from nutrient, invoice is flagged
+	/// </summary>
 	public void flag() {
 		flagged = true;
 	}

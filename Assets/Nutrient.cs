@@ -6,15 +6,27 @@ using static Elements;
 //Container for nutrient in both soil and plants
 public class Nutrient : IEnumerable<Element>
 {	
+	/// <summary>
+	/// Used for storing nutrients in soil, plants, or plant nodes
+	/// Uses a dictionary with Element as key, and an array of Current and Max value as data
+	/// </summary>
 	protected Dictionary<Element, float[]> nutrient = new Dictionary<Element, float[]>();
 	
+	/// <summary>
+	/// Default constructor, sets everything to empty by default
+	/// </summary>
+	/// <returns>Nutrient class with 0 as current value and cap</returns>
 	public Nutrient() {	
 		foreach(Element e in Element.GetValues(typeof(Element))) {
 			nutrient.Add(e, new float[] {0f,0f});
 		}
 		
 	}
-	
+	/// <summary>
+	/// Creates a Nutrient class using the data from an Invoice
+	/// </summary>
+	/// <param name="invoice"></param>
+	/// <returns>Nutrient class with the same value and cap as the corresponding value in the invoice</returns>
 	public Nutrient(Invoice invoice) {
 		foreach (Element e in invoice) {
 			float val = invoice.getVal(e);
@@ -58,6 +70,11 @@ public class Nutrient : IEnumerable<Element>
 		}
 	}
 	
+	/// <summary>
+	/// Deducts the amount specified from the invoice, if the amount is higher than what is present within the nutrient class, set current amount to zero
+	/// </summary>
+	/// <param name="inv">Will attempt to deduct the value matching in the invoice</param>
+	/// <returns>Returns the actual value deducted as invoice, invoice flagged if the full amount is not withdrawn</returns>
 	public Invoice withdraw(Invoice inv) {
 		Invoice result = new Invoice();
 		foreach (Element e in inv) {
@@ -72,6 +89,10 @@ public class Nutrient : IEnumerable<Element>
 		return result;
 	}
 	
+	/// <summary>
+	/// Deposits the amount available from invoice, prevents it from going past the cap.
+	/// </summary>
+	/// <param name="inv"></param>
 	public void deposit(Invoice inv) {
 		foreach (Element e in inv) {
 			deposit(e, inv.getVal(e));
