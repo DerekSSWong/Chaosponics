@@ -1,0 +1,4 @@
+Game Logic:
+Every tick the soil creates a list of every avaiable plants and fruits, it then enumerates through and exchanges nutrients with each of them.
+Everytime nutrient is exchanged with a plant, it will grow. Growing currently entails consuming nutrients, and delivering nutrients to the plant's fruit or process nodes.
+The fruit node 
