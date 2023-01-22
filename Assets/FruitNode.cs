@@ -60,7 +60,7 @@ public class FruitNode : MonoBehaviour
 		return outInvoice;
 	}
 	
-	//Not right
+	//This adds up all the nutrient caps specified in the Serialised Fields
 	Nutrient setNCap(Nutrient n, List<Ingredient> list) {
 		Nutrient outNutrient = n;
 		foreach (Ingredient i in list) {
@@ -69,6 +69,7 @@ public class FruitNode : MonoBehaviour
 		return outNutrient;
 	}
 	
+	//Reads all the data from serialised fields and turn them into usable data for the game
 	void compileInput() {
 		
 		PrimeInvoice = new Invoice();
@@ -158,6 +159,7 @@ public class FruitNode : MonoBehaviour
 		}
 	}
 	
+	//Run if the prime requirement is not met in a game tick
 	public virtual void purityNotMet() {
 		Purity *= 0.95f;
 	}
